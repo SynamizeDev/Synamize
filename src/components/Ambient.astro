@@ -1,0 +1,47 @@
+<div class="ambient" aria-hidden="true">
+  <div class="ambient__red ambient__red--a"></div>
+  <div class="ambient__red ambient__red--b"></div>
+  <div class="ambient__grain"></div>
+</div>
+
+<style>
+  .ambient {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+    background: var(--color-black);
+  }
+
+  .ambient__red {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--color-accent-glow);
+    filter: blur(90px);
+  }
+
+  .ambient__red--a {
+    width: 420px;
+    height: 320px;
+    top: -8%;
+    left: 18%;
+    opacity: 0.35;
+  }
+
+  .ambient__red--b {
+    width: 360px;
+    height: 280px;
+    bottom: 8%;
+    right: 8%;
+    opacity: 0.2;
+  }
+
+  .ambient__grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+  }
+</style>

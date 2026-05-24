@@ -1,0 +1,39 @@
+<div class="progress" aria-hidden="true"><span class="progress__bar"></span></div>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const bar = document.querySelector('.progress__bar');
+  if (bar && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.to(bar, {
+      scaleX: 1,
+      ease: 'none',
+      scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.5 },
+    });
+  }
+</script>
+
+<style>
+  .progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    z-index: var(--z-progress);
+    pointer-events: none;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .progress__bar {
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left center;
+    background: var(--color-red);
+    will-change: transform;
+  }
+</style>

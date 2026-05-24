@@ -1,0 +1,116 @@
+---
+const reasons = [
+  {
+    title: 'Performance Obsessed',
+    text: 'Every campaign, creative, and funnel is measured against revenue — not vanity metrics.',
+  },
+  {
+    title: 'Cinematic Creative',
+    text: 'Film-grade storytelling that makes premium brands feel larger than their ad spend.',
+  },
+  {
+    title: 'AI-Accelerated Ops',
+    text: 'Automation multiplies velocity so your team ships faster without burning out.',
+  },
+  {
+    title: 'Elite Partnership',
+    text: 'We operate as an embedded growth unit — strategic, proactive, and relentlessly accountable.',
+  },
+];
+---
+<section id="why" class="why section" aria-labelledby="why-heading">
+  <div class="container why__grid">
+    <div class="why__intro">
+      <p class="label" data-scramble="Why Synamize">Why Synamize</p>
+      <h2 id="why-heading" class="section-title" data-split-lines>Built for Brands That Refuse to Play Small</h2>
+      <p class="section-subtitle">
+        We combine performance marketing, premium creative, and intelligent systems into one unified growth engine.
+      </p>
+    </div>
+    <ul class="why__list">
+      {reasons.map((r, i) => (
+        <li class="why__item glass-card" data-why-item>
+          <span class="why__num">0{i + 1}</span>
+          <h3 class="why__item-title">{r.title}</h3>
+          <p class="why__item-text">{r.text}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { isLiteMode } from '../../utils/perf';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (!isLiteMode()) {
+    gsap.from('[data-why-item]', {
+      scrollTrigger: { trigger: '.why__list', start: 'top 88%', once: true },
+      opacity: 0,
+      y: 36,
+      duration: 0.7,
+      stagger: 0.1,
+      ease: 'power3.out',
+    });
+  }
+</script>
+
+<style>
+  .why__grid {
+    display: grid;
+    gap: 4rem;
+  }
+
+  @media (min-width: 900px) {
+    .why__grid {
+      grid-template-columns: 1fr 1.1fr;
+      align-items: start;
+      gap: 5rem;
+    }
+  }
+
+  .why__intro .section-subtitle {
+    margin-top: 1rem;
+  }
+
+  .why__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .why__item {
+    padding: 1.75rem 2rem;
+    transition: border-color 0.3s, transform 0.3s var(--ease-out-expo);
+  }
+
+  .why__item:hover {
+    border-color: rgba(124, 58, 237, 0.35);
+    transform: translateX(6px);
+  }
+
+  .why__num {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: var(--color-accent);
+    letter-spacing: 0.1em;
+  }
+
+  .why__item-title {
+    font-size: var(--text-xl);
+    margin: 0.5rem 0 0.5rem;
+  }
+
+  .why__item-text {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+  }
+</style>

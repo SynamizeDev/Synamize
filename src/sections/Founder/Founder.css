@@ -1,0 +1,53 @@
+/* src/sections/Founder/Founder.css */
+.Founder {
+  padding: var(--space-xl) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.Founder__container {
+  max-width: 64rem;
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .Founder__container {
+    flex-direction: row;
+  }
+}
+
+.Founder__image {
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 1;
+  background-color: var(--color-bg-tertiary);
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.Founder__content {
+  flex: 1;
+}
+
+.Founder__title {
+  font-size: clamp(var(--text-xl), 3vw, var(--text-2xl));
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+  line-height: var(--leading-tight);
+}
+
+.Founder__quote {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  font-style: italic;
+  margin-bottom: var(--space-md);
+  line-height: var(--leading-loose);
+}
+
+.Founder__name {
+  font-weight: 600;
+}

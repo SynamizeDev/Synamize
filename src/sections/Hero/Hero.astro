@@ -1,0 +1,55 @@
+---
+// src/sections/Hero/Hero.astro
+import { Image } from 'astro:assets';
+import HeroInteractive from './islands/HeroInteractive';
+import './Hero.css';
+import heroBg from '../../assets/images/hero/hero-bg.svg';
+
+interface Props {
+  heading: string;
+  subheading: string;
+  interactiveLabel?: string;
+}
+
+const { 
+  heading, 
+  subheading,
+  interactiveLabel = "Interactive Demo"
+} = Astro.props;
+---
+
+<section id="hero" class="Hero" aria-labelledby="hero-heading">
+  <!-- 
+    LCP Optimized Background Image 
+    Using astro:assets for explicit size and priority
+  -->
+  <Image 
+    src={heroBg}
+    alt="Abstract luxury background pattern"
+    class="Hero__bg"
+    width={1920}
+    height={1080}
+    loading="eager"
+    fetchpriority="high"
+    quality={90}
+  />
+
+  <div class="Hero__container">
+    <h1 id="hero-heading" class="Hero__title reveal-on-scroll delay-100">{heading}</h1>
+    <p class="Hero__subtitle reveal-on-scroll delay-200">{subheading}</p>
+    
+    <!-- 
+      Interactive Island:
+      Receives simple, serializable props.
+    -->
+    <div class="Hero__interactive reveal-on-scroll delay-300">
+      <HeroInteractive client:visible label={interactiveLabel} />
+    </div>
+
+    <!-- Static content continues -->
+    <div class="Hero__actions reveal-on-scroll delay-400">
+      <a href="#contact" class="btn-primary" aria-label="Get started with Synamize">Get Started</a>
+      <a href="#services" class="btn-secondary" aria-label="View our services">View Services</a>
+    </div>
+  </div>
+</section>

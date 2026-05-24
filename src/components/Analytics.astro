@@ -1,0 +1,41 @@
+---
+// src/components/Analytics.astro
+// Example of a production-safe Analytics component
+// In a real setup, we would integrate @astrojs/partytown
+
+interface Props {
+  id?: string;
+  partytown?: boolean;
+}
+
+const { id = 'G-XXXXXXXXXX', partytown = true } = Astro.props;
+---
+
+<!-- 
+  Safe Loading Strategy:
+  1. Partytown (Off-main-thread) by default if enabled
+  2. Async fallback
+  3. No execution in Dev mode (optional)
+-->
+
+{partytown ? (
+  <>
+    <script type="text/partytown" async src={`https://www.googletagmanager.com/gtag/js?id=${id}`}></script>
+    <script type="text/partytown" define:vars={{ id }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', id);
+    </script>
+  </>
+) : (
+  <>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${id}`}></script>
+    <script define:vars={{ id }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', id);
+    </script>
+  </>
+)}

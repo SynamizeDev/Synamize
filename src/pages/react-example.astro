@@ -1,0 +1,27 @@
+---
+import InteractiveIsland from '../components/InteractiveIsland';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>React Island Example</title>
+  </head>
+  <body style="font-family: system-ui, sans-serif; padding: 2rem;">
+    <h1>Static Astro Page</h1>
+    <p>The content below is a React island.</p>
+
+    <div style="margin-top: 2rem; max-width: 400px;">
+      <!-- 
+        client:load = Hydrates immediately on page load.
+        client:visible = Hydrates only when the component enters the viewport.
+      -->
+      <InteractiveIsland client:visible initialCount={5} />
+    </div>
+    
+    <p style="margin-top: 2rem; color: #666;">
+      The rest of this page remains static HTML with 0KB JavaScript overhead (until the island hydrates).
+    </p>
+  </body>
+</html>

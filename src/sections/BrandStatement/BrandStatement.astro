@@ -1,0 +1,49 @@
+---
+---
+<section id="statement" class="statement scene" aria-labelledby="statement-text">
+  <div class="statement__light" aria-hidden="true"></div>
+  <div class="container statement__inner">
+    <p id="statement-text" class="statement__text" data-mask-text>
+      We don't market brands.<br />We engineer digital dominance.
+    </p>
+  </div>
+</section>
+
+<style>
+  .statement {
+    text-align: center;
+    align-items: center;
+    overflow: hidden;
+    background: var(--color-black);
+    border-block: 1px solid var(--color-border);
+  }
+
+  .statement__light {
+    position: absolute;
+    width: 480px;
+    height: 280px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--color-accent-glow);
+    filter: blur(100px);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  .statement__inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .statement__text {
+    font-size: clamp(2rem, 6vw, 4.25rem);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    font-weight: 600;
+    margin: 0;
+    max-width: 16ch;
+    margin-inline: auto;
+    color: var(--color-white);
+  }
+</style>

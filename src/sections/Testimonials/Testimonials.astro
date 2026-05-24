@@ -1,0 +1,106 @@
+---
+const quotes = [
+  { text: 'Synamize transformed our growth engine. Revenue up 4× in ninety days.', name: 'Sarah Chen', role: 'CEO, Luxe Athletics' },
+  { text: 'Our ads finally feel as premium as our product.', name: 'Marcus Reid', role: 'Founder, Nova Skincare' },
+  { text: 'They think like operators. The best partnership we have had.', name: 'Elena Vasquez', role: 'CMO, Vertex AI' },
+  { text: 'CAC dropped sixty-two percent while we scaled aggressively.', name: 'James Okonkwo', role: 'Head of Growth, Apex Motors' },
+];
+---
+<section id="testimonials" class="testimonials section" aria-labelledby="testimonials-title">
+  <div class="container testimonials__head">
+    <p class="label">Voices</p>
+    <h2 id="testimonials-title" class="display testimonials__title">Trusted</h2>
+  </div>
+  <div class="testimonials__rail">
+    <div class="testimonials__track">
+      {[...quotes, ...quotes].map((q) => (
+        <blockquote class="testimonials__card glass">
+          <p class="testimonials__quote">"{q.text}"</p>
+          <footer>
+            <cite class="testimonials__name">{q.name}</cite>
+            <span class="testimonials__role">{q.role}</span>
+          </footer>
+        </blockquote>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    overflow: hidden;
+    background: var(--color-black);
+  }
+
+  .testimonials__head {
+    margin-bottom: 3rem;
+  }
+
+  .testimonials__title {
+    margin: 0.75rem 0 0;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--color-white);
+  }
+
+  .testimonials__rail {
+    overflow: hidden;
+  }
+
+  .testimonials__track {
+    display: flex;
+    gap: 1.25rem;
+    width: max-content;
+    animation: testimonial-drift 60s linear infinite;
+  }
+
+  .testimonials__rail:hover .testimonials__track {
+    animation-play-state: paused;
+  }
+
+  @keyframes testimonial-drift {
+    to { transform: translate3d(-50%, 0, 0); }
+  }
+
+  .testimonials__card {
+    flex: 0 0 min(380px, 86vw);
+    margin: 0;
+    padding: 2rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    transition: border-color 0.4s var(--ease-luxury);
+  }
+
+  .testimonials__card:hover {
+    border-color: var(--color-border-red);
+  }
+
+  .testimonials__quote {
+    font-size: var(--text-lg);
+    line-height: var(--leading-snug);
+    margin: 0 0 1.75rem;
+    font-style: normal;
+    color: var(--color-white);
+  }
+
+  .testimonials__name {
+    display: block;
+    font-style: normal;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-white);
+  }
+
+  .testimonials__role {
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .testimonials__track {
+      animation: none;
+      flex-wrap: wrap;
+      width: 100%;
+      padding-inline: var(--container-pad);
+    }
+  }
+</style>

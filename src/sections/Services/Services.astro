@@ -1,0 +1,57 @@
+---
+import ServiceCard from '../../components/islands/ServiceCard';
+
+const services = [
+  { title: 'Meta Ads', description: 'Precision paid systems engineered for scale and return.' },
+  { title: 'Content Systems', description: 'Cinematic pipelines that convert attention into revenue.' },
+  { title: 'AI Automation', description: 'Intelligent workflows that multiply output without compromise.' },
+  { title: 'Brand Strategy', description: 'Positioning that makes your offer feel inevitable.' },
+  { title: 'Video Production', description: 'Film-grade content built for performance.' },
+  { title: 'Social Growth', description: 'Organic engines for authority and reach.' },
+];
+---
+<section id="services" class="services section" data-scene aria-labelledby="services-title">
+  <div class="container">
+    <header class="services__head">
+      <p class="label" data-scene-item>Capabilities</p>
+      <h2 id="services-title" class="display services__title" data-mask-text>Built for Performance</h2>
+    </header>
+    <div class="services__grid" data-scene-items>
+      {services.map((s, i) => (
+        <ServiceCard client:load index={i} title={s.title} description={s.description} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    background: var(--color-black);
+  }
+
+  .services__head {
+    margin-bottom: clamp(3rem, 8vh, 5rem);
+    max-width: 640px;
+  }
+
+  .services__title {
+    margin: 1rem 0 0;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--color-white);
+  }
+
+  .services__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--color-border);
+  }
+
+  @media (min-width: 640px) {
+    .services__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .services__grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>

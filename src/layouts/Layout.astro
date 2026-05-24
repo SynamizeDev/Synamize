@@ -1,0 +1,126 @@
+---
+
+import SmoothScroll from '../components/SmoothScroll.astro';
+
+import ScrollProgress from '../components/ScrollProgress.astro';
+
+import Ambient from '../components/Ambient.astro';
+
+import Nav from '../components/Nav.astro';
+
+import SiteMotion from '../components/islands/SiteMotion';
+
+import '@fontsource-variable/inter';
+
+import '../styles/tokens.css';
+
+import '../styles/typography.css';
+
+import '../styles/global.css';
+
+import '../styles/components.css';
+
+
+
+interface Props {
+
+  title: string;
+
+  description: string;
+
+  image?: string;
+
+  noIndex?: boolean;
+
+}
+
+
+
+const { title, description, image = '/favicon.svg', noIndex = false } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://synamize.agency');
+
+---
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>{title}</title>
+
+    <meta name="description" content={description} />
+
+    <link rel="canonical" href={canonicalURL} />
+
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta property="og:title" content={title} />
+
+    <meta property="og:description" content={description} />
+
+    <meta property="og:type" content="website" />
+
+    <meta property="og:url" content={canonicalURL} />
+
+    <meta property="og:image" content={image} />
+
+  </head>
+
+  <body>
+
+    <ScrollProgress />
+
+    <Ambient />
+
+    <Nav />
+
+    <SiteMotion client:load />
+
+    <slot />
+
+    <SmoothScroll />
+
+  </body>
+
+</html>
+
+
+
+<script>
+
+  import { gsap } from 'gsap';
+
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+
+
+  gsap.registerPlugin(ScrollTrigger);
+
+
+
+  let timer: ReturnType<typeof setTimeout>;
+
+  const refresh = () => {
+
+    clearTimeout(timer);
+
+    timer = setTimeout(() => ScrollTrigger.refresh(), 150);
+
+  };
+
+  window.addEventListener('load', refresh, { once: true });
+
+  window.addEventListener('resize', refresh, { passive: true });
+
+</script>
+

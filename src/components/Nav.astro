@@ -1,0 +1,141 @@
+---
+const links = [
+  { href: '#services', label: 'Services' },
+  { href: '#work', label: 'Work' },
+  { href: '#process', label: 'Process' },
+];
+---
+<header class="nav" id="nav" data-nav>
+  <nav class="nav__inner container" aria-label="Main">
+    <a href="#" class="nav__logo">Synamize</a>
+    <ul class="nav__links">
+      {links.map((l) => (
+        <li><a href={l.href} class="link-underline">{l.label}</a></li>
+      ))}
+    </ul>
+    <a href="#contact" class="btn btn--fill nav__cta">Book Call</a>
+    <button type="button" class="nav__toggle" aria-label="Menu" aria-expanded="false" data-nav-toggle>
+      <span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav__drawer" data-nav-drawer hidden>
+    {links.map((l) => (
+      <a href={l.href} class="nav__drawer-link">{l.label}</a>
+    ))}
+    <a href="#contact" class="btn btn--fill">Book Call</a>
+  </div>
+</header>
+
+<script>
+  const nav = document.querySelector('[data-nav]');
+  const toggle = document.querySelector('[data-nav-toggle]');
+  const drawer = document.querySelector('[data-nav-drawer]');
+
+  window.addEventListener(
+    'scroll',
+    () => nav?.classList.toggle('nav--solid', window.scrollY > 60),
+    { passive: true }
+  );
+
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    if (drawer) drawer.hidden = open;
+  });
+</script>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-nav);
+    padding: 1.25rem 0;
+    background: rgba(24, 24, 24, 0.72);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid transparent;
+    transition: background 0.4s var(--ease-luxury), border-color 0.4s var(--ease-luxury);
+  }
+
+  .nav--solid {
+    background: var(--color-glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  .nav__logo {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-white);
+    margin-right: auto;
+  }
+
+  .nav__links {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
+  }
+
+  .nav__cta {
+    display: none;
+    padding: 0.65rem 1.25rem;
+    font-size: var(--text-xs);
+  }
+
+  @media (min-width: 900px) {
+    .nav__links, .nav__cta { display: flex; }
+    .nav__toggle { display: none; }
+  }
+
+  .nav__toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 4px;
+  }
+
+  .nav__toggle span {
+    display: block;
+    width: 22px;
+    height: 1px;
+    background: var(--color-white);
+  }
+
+  .nav__drawer {
+    position: fixed;
+    inset: 0;
+    top: 64px;
+    z-index: calc(var(--z-nav) - 1);
+    background: var(--color-black);
+    padding: 2rem var(--container-pad);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .nav__drawer[hidden] { display: none; }
+
+  .nav__drawer-link {
+    font-size: var(--text-2xl);
+    font-weight: 500;
+    color: var(--color-white);
+  }
+
+  @media (min-width: 900px) {
+    .nav__drawer { display: none !important; }
+  }
+</style>

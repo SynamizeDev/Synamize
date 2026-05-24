@@ -1,0 +1,19 @@
+---
+import './Authority.css';
+
+interface Props {
+  heading?: string;
+}
+const { heading = "Trusted by Industry Leaders" } = Astro.props;
+---
+<section class="Authority">
+  <div class="Authority__container">
+    <h2 class="Authority__title reveal-on-scroll">{heading}</h2>
+    <div class="Authority__logos reveal-on-scroll delay-100">
+      <span>[Logo 1]</span>
+      <span>[Logo 2]</span>
+      <span>[Logo 3]</span>
+      <span>[Logo 4]</span>
+    </div>
+  </div>
+</section>

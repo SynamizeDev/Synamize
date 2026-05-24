@@ -1,0 +1,111 @@
+---
+const steps = [
+  { num: '01', title: 'Discover', text: 'Audit your brand, funnel, and competitive landscape with precision.' },
+  { num: '02', title: 'Position', text: 'Architect a growth strategy built for dominance, not noise.' },
+  { num: '03', title: 'Build', text: 'Deploy cinematic creative and performance systems at scale.' },
+  { num: '04', title: 'Scale', text: 'Compound winners and expand across every high-leverage channel.' },
+];
+---
+<section id="process" class="process section" aria-labelledby="process-title">
+  <div class="container process__layout">
+    <header class="process__head">
+      <p class="label">Method</p>
+      <h2 id="process-title" class="display process__title" data-mask-text>The Synamize System</h2>
+    </header>
+    <ol class="process__steps">
+      {steps.map((s) => (
+        <li class="process__step" data-process-step>
+          <span class="process__num">{s.num}</span>
+          <div class="process__content">
+            <h3 class="process__name">{s.title}</h3>
+            <p class="process__text">{s.text}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { revealOnEnter } from '../../animations/reveal';
+  import { isLiteMode } from '../../utils/perf';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (!isLiteMode()) {
+    revealOnEnter('[data-process-step]', {
+      trigger: '#process',
+      start: 'top 85%',
+      from: { opacity: 0, y: 36 },
+      to: { opacity: 1, y: 0, duration: 0.75, stagger: 0.1, ease: 'power3.out' },
+    });
+  }
+</script>
+
+<style>
+  .process {
+    background: var(--color-black);
+  }
+
+  .process__layout {
+    display: grid;
+    gap: 4rem;
+  }
+
+  @media (min-width: 900px) {
+    .process__layout {
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+  }
+
+  .process__title {
+    margin: 1rem 0 0;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    color: var(--color-white);
+  }
+
+  .process__steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .process__step {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--color-border);
+    transition: border-color 0.4s var(--ease-luxury);
+  }
+
+  .process__step:hover {
+    border-color: var(--color-border-red);
+  }
+
+  .process__num {
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-red);
+    padding-top: 0.35rem;
+  }
+
+  .process__name {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+    color: var(--color-white);
+  }
+
+  .process__text {
+    margin: 0;
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-snug);
+    max-width: 40ch;
+  }
+</style>

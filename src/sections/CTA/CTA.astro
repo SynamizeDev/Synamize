@@ -1,0 +1,73 @@
+---
+---
+<section id="contact" class="cta scene" aria-labelledby="cta-title">
+  <div class="cta__light" aria-hidden="true"></div>
+  <div class="container cta__inner">
+    <h2 id="cta-title" class="cta__title" data-mask-text>
+      Your brand deserves more than content.<br />It deserves presence.
+    </h2>
+    <a href="mailto:hello@synamize.agency" class="btn btn--fill cta__btn" data-magnetic="0.25">
+      Book Strategy Call
+    </a>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { revealOnEnter } from '../../animations/reveal';
+  import { isLiteMode } from '../../utils/perf';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (!isLiteMode()) {
+    revealOnEnter('.cta__btn', {
+      trigger: '#contact',
+      start: 'top 80%',
+      from: { opacity: 0, y: 24 },
+      to: { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: 0.3 },
+    });
+  }
+</script>
+
+<style>
+  .cta {
+    text-align: center;
+    align-items: center;
+    overflow: hidden;
+    background: var(--color-black);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .cta__light {
+    position: absolute;
+    width: 500px;
+    height: 300px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--color-accent-glow);
+    filter: blur(110px);
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  .cta__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+  }
+
+  .cta__title {
+    font-size: clamp(2rem, 5.5vw, 3.75rem);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    font-weight: 600;
+    margin: 0 0 3rem;
+    color: var(--color-white);
+  }
+
+  .cta__btn {
+    padding: 1rem 2.5rem;
+  }
+</style>

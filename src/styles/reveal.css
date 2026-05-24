@@ -1,0 +1,52 @@
+/* src/styles/reveal.css */
+
+/* 1. Default (No JS): Content is visible */
+.reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+}
+
+/* 2. JS Enabled: Hide and prepare for reveal */
+.js .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+}
+
+/* 3. Visible State (Triggered by Observer) */
+.js .reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger Delays */
+.delay-100 {
+    transition-delay: 100ms;
+}
+
+.delay-200 {
+    transition-delay: 200ms;
+}
+
+.delay-300 {
+    transition-delay: 300ms;
+}
+
+.delay-400 {
+    transition-delay: 400ms;
+}
+
+.delay-500 {
+    transition-delay: 500ms;
+}
+
+/* Accessibility: Disable motion if requested */
+@media (prefers-reduced-motion: reduce) {
+    .js .reveal-on-scroll {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}

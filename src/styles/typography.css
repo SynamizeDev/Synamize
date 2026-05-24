@@ -1,0 +1,43 @@
+:root {
+  --text-xs: 0.6875rem;
+  --text-sm: 0.8125rem;
+  --text-base: 1rem;
+  --text-lg: clamp(1.0625rem, 1.5vw, 1.25rem);
+  --text-xl: clamp(1.5rem, 2.5vw, 2rem);
+  --text-2xl: clamp(2rem, 4vw, 3rem);
+  --text-3xl: clamp(2.5rem, 6vw, 4.5rem);
+  --text-display: clamp(3.25rem, 9vw, 7.5rem);
+  --text-hero: clamp(2.5rem, 7.5vw, 5.5rem);
+
+  --leading-tight: 0.92;
+  --leading-snug: 1.2;
+  --leading-base: 1.55;
+  --tracking-tight: -0.04em;
+  --tracking-wide: 0.2em;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-base);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 {
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  font-weight: 600;
+  color: var(--color-white);
+}
+
+.display,
+.headline {
+  color: var(--color-white);
+}
+
+.body-lg,
+.section-subtitle {
+  color: var(--color-text-secondary);
+}
