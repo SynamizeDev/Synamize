@@ -1,0 +1,206 @@
+---
+const members = [
+  {
+    name: 'Jay Prajapat',
+    role: 'Co-Founder',
+    bio: 'Focused on systems, operations, and growth strategies that help businesses scale efficiently and build a stronger online presence.',
+    image: '',
+    imageAlt: 'Jay Prajapat',
+  },
+  {
+    name: 'Jatin Prajapat',
+    role: 'Co-Founder',
+    bio: 'Focused on customer acquisition, advertising, and digital systems that help businesses attract leads and drive growth.',
+    image: '',
+    imageAlt: 'Jatin Prajapat',
+  },
+];
+---
+
+<section id="team" class="team section" aria-labelledby="team-heading">
+  <div class="container">
+    <header class="team__head">
+      <div class="team__head-main">
+        <p class="label">Meet The Team Behind Synamize</p>
+        <h2 id="team-heading" class="team__title">
+          Our focus isn't vanity metrics, it's real business growth.
+        </h2>
+      </div>
+      <p class="team__intro">
+        Too many businesses struggle online despite offering great services. Synamize exists
+        to help businesses attract customers through content, advertising, and digital systems.
+        Today, Synamize helps brands combine modern content, paid advertising and digital systems
+        to attract more customers and scale with clarity.
+      </p>
+    </header>
+
+    <ul class="team__grid">
+      {members.map((member) => (
+        <li>
+          <article class="team__card">
+            <div class="team__media">
+              {member.image ? (
+                <img
+                  class="team__image"
+                  src={member.image}
+                  alt={member.imageAlt}
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <div class="team__placeholder" aria-hidden="true">
+                  <span class="team__placeholder-label">{member.name}</span>
+                </div>
+              )}
+            </div>
+
+            <div class="team__meta">
+              <h3 class="team__name">{member.name}</h3>
+              <p class="team__role">{member.role}</p>
+            </div>
+
+            <p class="team__bio">{member.bio}</p>
+          </article>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .team {
+    background: var(--color-bg);
+  }
+
+  .team__head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-header-content);
+    margin-bottom: var(--space-header-content);
+  }
+
+  .team__head-main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-label-title);
+    max-width: 31.25rem;
+  }
+
+  .team__title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-section);
+    font-weight: 400;
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+  }
+
+  .team__intro {
+    margin: 0;
+    max-width: 36.8125rem;
+    font-size: var(--text-body-lg);
+    line-height: var(--leading-snug);
+    color: var(--color-text);
+  }
+
+  .team__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gap-stat);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .team__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.375rem;
+    padding: 2.25rem var(--card-padding);
+    text-align: center;
+    background: var(--color-surface);
+    border: 1px solid var(--card-border);
+    border-radius: var(--card-radius);
+  }
+
+  .team__media {
+    width: 100%;
+    max-width: 16.4375rem;
+  }
+
+  .team__image,
+  .team__placeholder {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: var(--card-radius);
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .team__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-stat), var(--color-surface-elevated);
+    border: 1px solid var(--card-border);
+  }
+
+  .team__placeholder-label {
+    font-size: var(--text-footer-link);
+    line-height: var(--leading-tight);
+    color: var(--color-text-muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .team__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .team__name {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-card-title);
+    font-weight: 700;
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+    text-transform: capitalize;
+  }
+
+  .team__role {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-label);
+    font-weight: 400;
+    line-height: var(--leading-tight);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .team__bio {
+    margin: 0;
+    max-width: 35.5rem;
+    font-size: var(--text-body-lg);
+    line-height: var(--leading-snug);
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 900px) {
+    .team__head {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--gap-stat);
+    }
+
+    .team__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

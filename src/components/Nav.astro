@@ -1,8 +1,9 @@
 ---
 const links = [
   { href: '#services', label: 'Services' },
-  { href: '#work', label: 'Work' },
-  { href: '#process', label: 'Process' },
+  { href: '#testimonials', label: 'Results' },
+  { href: '#team', label: 'Team' },
+  { href: '#contact', label: 'Contact' },
 ];
 ---
 <header class="nav" id="nav" data-nav>
@@ -13,7 +14,7 @@ const links = [
         <li><a href={l.href} class="link-underline">{l.label}</a></li>
       ))}
     </ul>
-    <a href="#contact" class="btn btn--fill nav__cta">Book Call</a>
+    <a href="#contact" class="btn btn--fill nav__cta">Let's Connect</a>
     <button type="button" class="nav__toggle" aria-label="Menu" aria-expanded="false" data-nav-toggle>
       <span></span><span></span>
     </button>
@@ -22,7 +23,7 @@ const links = [
     {links.map((l) => (
       <a href={l.href} class="nav__drawer-link">{l.label}</a>
     ))}
-    <a href="#contact" class="btn btn--fill">Book Call</a>
+    <a href="#contact" class="btn btn--fill">Let's Connect</a>
   </div>
 </header>
 

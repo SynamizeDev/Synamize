@@ -1,29 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import HeroScene from '../components/islands/HeroScene';
-import BrandStatement from '../sections/BrandStatement/BrandStatement.astro';
+import Hero from '../sections/Hero/Hero.astro';
+import TrustBar from '../sections/TrustBar/TrustBar.astro';
 import Services from '../sections/Services/Services.astro';
-import CaseStudiesExperience from '../components/islands/CaseStudiesExperience';
-import Process from '../sections/Process/Process.astro';
 import Testimonials from '../sections/Testimonials/Testimonials.astro';
-import CTA from '../sections/CTA/CTA.astro';
+import WhyChoose from '../sections/WhyChoose/WhyChoose.astro';
+import Team from '../sections/Team/Team.astro';
 import Footer from '../sections/Footer/Footer.astro';
 
 const meta = {
-  title: 'Synamize — Hi, We’re Synamize Agency',
-  description: 'Performance systems, cinematic content, and attention-driven growth for brands that refuse to play small.',
+  title: 'Synamize — The First Choice In Your City',
+  description:
+    'We help local businesses attract customers, build trust, and grow consistently through content, paid ads, websites, and automated systems.',
 };
 ---
 
 <Layout title={meta.title} description={meta.description}>
   <main>
-    <HeroScene client:load />
-    <BrandStatement />
+    <Hero />
+    <TrustBar />
     <Services />
-    <CaseStudiesExperience client:visible />
-    <Process />
     <Testimonials />
-    <CTA />
+    <WhyChoose />
+    <Team />
   </main>
   <Footer />
 </Layout>

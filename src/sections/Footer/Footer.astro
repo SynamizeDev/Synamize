@@ -1,55 +1,253 @@
 ---
 const year = new Date().getFullYear();
+
+const quickLinks = [
+  { label: 'Home', href: '#' },
+  { label: 'Services', href: '#services' },
+  { label: 'Results', href: '#testimonials' },
+  { label: 'About', href: '#team' },
+  { label: 'Contact', href: '#contact' },
+];
+
+const serviceLinks = [
+  { label: 'Social Media', href: '#services' },
+  { label: 'Paid Ads', href: '#services' },
+  { label: 'Content Creation', href: '#services' },
+  { label: 'Websites', href: '#services' },
+  { label: 'Growth Systems', href: '#services' },
+];
+
+const connectLinks = [
+  { label: 'Email', href: 'mailto:hello@synamize.agency' },
+  { label: 'Instagram', href: 'https://instagram.com/' },
+  { label: 'WhatsApp', href: 'https://wa.me/' },
+  { label: 'Location', href: '#' },
+];
 ---
-<footer class="footer">
-  <div class="container footer__inner">
-    <a href="#" class="footer__logo">Synamize</a>
-    <nav class="footer__nav" aria-label="Footer">
-      <a href="#services" class="link-underline">Services</a>
-      <a href="#work" class="link-underline">Work</a>
-      <a href="mailto:hello@synamize.agency" class="link-underline">Contact</a>
-    </nav>
-    <p class="footer__copy">&copy; {year}</p>
+
+<footer id="contact" class="footer" aria-labelledby="footer-cta-title">
+  <div class="container footer__wrap">
+    <div class="footer__panel">
+      <div class="footer__cta">
+        <div class="footer__cta-copy">
+          <h2 id="footer-cta-title" class="footer__cta-title">
+            Ready To Get More Customers Online?
+          </h2>
+          <p class="footer__cta-text">
+            Book a free strategy call and discover how your business can attract more customers online.
+          </p>
+        </div>
+        <a href="mailto:hello@synamize.agency" class="btn btn--fill footer__cta-btn">
+          Let's Connect
+        </a>
+      </div>
+
+      <div class="footer__rule" aria-hidden="true"></div>
+
+      <div class="footer__body">
+        <a href="#" class="footer__logo">Synamize</a>
+
+        <div class="footer__columns">
+          <nav class="footer__col" aria-label="Quick links">
+            <p class="footer__col-title">Quick Links</p>
+            <ul class="footer__links">
+              {quickLinks.map((link) => (
+                <li>
+                  <a href={link.href} class="footer__link">{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav class="footer__col" aria-label="Services">
+            <p class="footer__col-title">Services</p>
+            <ul class="footer__links">
+              {serviceLinks.map((link) => (
+                <li>
+                  <a href={link.href} class="footer__link">{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav class="footer__col" aria-label="Connect">
+            <p class="footer__col-title">Connect</p>
+            <ul class="footer__links">
+              {connectLinks.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="footer__link"
+                    {...(link.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer__rule" aria-hidden="true"></div>
+
+      <p class="footer__copy">&copy; Synamize &nbsp;|&nbsp; {year} All Rights Reserved</p>
+    </div>
   </div>
 </footer>
 
 <style>
   .footer {
-    padding: 4rem 0 3rem;
-    border-top: 1px solid var(--color-border);
-    background: var(--color-black);
+    padding-block: var(--space-section) clamp(2.5rem, 6vw, 4rem);
+    background: var(--color-bg);
   }
 
-  .footer__inner {
-    display: grid;
-    gap: 2rem;
+  .footer__wrap {
+    width: min(100% - var(--container-pad) * 2, var(--container-max));
+    margin-inline: auto;
   }
 
-  @media (min-width: 768px) {
-    .footer__inner {
-      grid-template-columns: 1fr auto auto;
-      align-items: center;
-    }
+  .footer__panel {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 4vw, 2.5rem);
+    padding: clamp(2rem, 5vw, 2.875rem) clamp(1.5rem, 5vw, 6rem);
+    background: var(--color-surface);
+    border-radius: var(--card-radius);
+  }
+
+  .footer__cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-header-content);
+  }
+
+  .footer__cta-copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-label-title);
+    max-width: 40.8125rem;
+  }
+
+  .footer__cta-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-section);
+    font-weight: 400;
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+  }
+
+  .footer__cta-text {
+    margin: 0;
+    font-size: var(--text-body-lg);
+    line-height: var(--leading-snug);
+    color: var(--color-text);
+  }
+
+  .footer__cta-btn {
+    flex-shrink: 0;
+    min-height: var(--btn-height);
+    padding: var(--btn-padding-y) var(--btn-padding-x);
+    font-family: var(--font-accent);
+    font-size: var(--btn-font-size);
+    font-weight: var(--btn-font-weight);
+    letter-spacing: var(--tracking-normal);
+    text-transform: none;
+  }
+
+  .footer__rule {
+    height: 1px;
+    background: var(--color-border);
+    opacity: 0.35;
+  }
+
+  .footer__body {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 4vw, 2.5rem);
   }
 
   .footer__logo {
-    font-size: var(--text-sm);
+    font-family: var(--font-display);
+    font-size: var(--text-footer-heading);
     font-weight: 600;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--color-white);
+    color: var(--color-text);
   }
 
-  .footer__nav {
+  .footer__columns {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gap-stat);
+  }
+
+  .footer__col {
+    min-width: 0;
+  }
+
+  .footer__col-title {
+    margin: 0 0 var(--space-label-title);
+    font-family: var(--font-display);
+    font-size: var(--text-footer-heading);
+    font-weight: 400;
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+  }
+
+  .footer__links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .footer__link {
+    display: inline-block;
+    padding-block: 0.25rem;
+    font-size: var(--text-footer-link);
+    line-height: var(--leading-footer);
+    color: var(--color-text-muted);
+    transition: color 0.35s var(--ease-luxury);
+  }
+
+  .footer__link:hover {
+    color: var(--color-text);
   }
 
   .footer__copy {
     margin: 0;
-    font-size: var(--text-xs);
-    color: var(--color-text-secondary);
-    letter-spacing: 0.06em;
+    font-size: var(--text-copyright);
+    line-height: var(--leading-tight);
+    text-align: center;
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 640px) {
+    .footer__columns {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 900px) {
+    .footer__cta {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--gap-card);
+    }
+
+    .footer__cta-btn {
+      align-self: flex-start;
+      margin-top: 0.25rem;
+    }
+
+    .footer__columns {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   }
 </style>

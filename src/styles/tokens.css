@@ -1,41 +1,96 @@
-:root {
-  /* Strict 3-color system */
-  --color-black: #181818;
-  --color-red: #D40000;
-  --color-white: #FFFFFF;
-
-  /* Semantic aliases */
-  --color-bg: var(--color-black);
-  --color-surface: rgba(255, 255, 255, 0.03);
-  --color-surface-elevated: rgba(255, 255, 255, 0.05);
-  --color-text: var(--color-white);
-  --color-text-secondary: rgba(255, 255, 255, 0.55);
-  --color-accent: var(--color-red);
-  --color-accent-hover: #a80000;
-  --color-accent-soft: rgba(212, 0, 0, 0.12);
-  --color-accent-glow: rgba(212, 0, 0, 0.22);
-
-  --color-border: rgba(255, 255, 255, 0.1);
-  --color-border-strong: rgba(255, 255, 255, 0.18);
-  --color-border-red: rgba(212, 0, 0, 0.45);
-  --color-glass: rgba(24, 24, 24, 0.78);
-  --color-glass-border: rgba(255, 255, 255, 0.08);
-
-  --font-sans: 'Inter Variable', system-ui, sans-serif;
-
-  --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
-
-  --space-section: clamp(6rem, 14vh, 10rem);
-  --container-max: 1280px;
-  --container-pad: clamp(1.25rem, 4vw, 2.5rem);
-  --radius-btn: 1rem;
-
-  --shadow-soft: 0 24px 80px rgba(0, 0, 0, 0.55);
-  --shadow-red: 0 0 48px rgba(212, 0, 0, 0.18);
-
-  --z-base: 1;
-  --z-nav: 200;
-  --z-overlay: 300;
-  --z-progress: 600;
-}
+:root {
+  /* Core palette (Figma Landing Page) */
+  --color-black: #0a0a0a;
+  --color-red: #b11212;
+  --color-white: #ffffff;
+
+  /* Semantic aliases */
+  --color-bg: var(--color-black);
+  --color-surface: #111111;
+  --color-surface-elevated: #161616;
+  --color-text: var(--color-white);
+  --color-text-secondary: #9b9b9b;
+  --color-text-muted: var(--color-text-secondary);
+  --color-accent: var(--color-red);
+  --color-accent-deep: #690707;
+  --color-accent-hover: #910e0e;
+  --color-accent-soft: rgba(177, 18, 18, 0.12);
+  --color-accent-glow: rgba(177, 18, 18, 0.22);
+
+  --color-border: rgba(255, 255, 255, 0.2);
+  --color-border-strong: rgba(255, 255, 255, 0.2);
+  --color-border-subtle: #999999;
+  --color-border-red: rgba(177, 18, 18, 0.45);
+  --color-glass: rgba(17, 17, 17, 0.78);
+  --color-glass-border: rgba(255, 255, 255, 0.2);
+  --color-glass-from: rgba(255, 255, 255, 0.04);
+  --color-glass-to: rgba(255, 255, 255, 0.02);
+
+  /* Font stacks — Inter remains default until Layout loads Figma faces */
+  --font-sans: 'Inter Variable', system-ui, sans-serif;
+  --font-display: 'Trebuchet MS', 'Segoe UI', sans-serif;
+  --font-accent: 'Urbanist', var(--font-sans);
+  --font-body-alt: 'Afacad Flux', var(--font-sans);
+
+  --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout spacing (1920 artboard → 1264 content column) */
+  --space-section: clamp(6rem, 10vw, 11.25rem);
+  --space-section-stack: 11.25rem;
+  --space-header-content: 3.75rem;
+  --space-label-title: 1rem;
+  --space-card: 1.625rem;
+  --gap-card: 1rem;
+  --gap-stat: 1.75rem;
+  --container-max: 79rem;
+  --container-pad: clamp(1.25rem, 4vw, 3.75rem);
+
+  /* Radius */
+  --radius-btn: 1rem;
+  --radius-card: 1rem;
+
+  /* Button tokens */
+  --btn-height: 3.4375rem;
+  --btn-padding-x: 1.25rem;
+  --btn-padding-y: 0.625rem;
+  --btn-font-size: 1.25rem;
+  --btn-font-weight: 700;
+  --btn-border-width: 1px;
+
+  /* Card tokens */
+  --card-bg: var(--color-surface);
+  --card-border: var(--color-border);
+  --card-padding: var(--space-card);
+  --card-radius: var(--radius-card);
+  --card-gap: 0.625rem;
+  --card-glow-size: 10.375rem;
+  --card-glow-color: rgba(177, 18, 18, 0.35);
+
+  /* Gradients */
+  --gradient-btn: linear-gradient(
+    90deg,
+    var(--color-accent-deep) 6.773%,
+    var(--color-accent) 49.289%,
+    var(--color-accent-deep) 91.862%
+  );
+  --gradient-stat: linear-gradient(
+    90deg,
+    var(--color-glass-from),
+    var(--color-glass-to)
+  );
+  --gradient-ambient: radial-gradient(
+    ellipse at center,
+    var(--color-accent-glow) 0%,
+    transparent 70%
+  );
+
+  --shadow-soft: 0 24px 80px rgba(0, 0, 0, 0.55);
+  --shadow-red: 0 0 48px rgba(177, 18, 18, 0.18);
+
+  --z-base: 1;
+  --z-nav: 200;
+  --z-overlay: 300;
+  --z-progress: 600;
+}
+
