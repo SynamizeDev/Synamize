@@ -13,6 +13,10 @@ import SiteMotion from '../components/islands/SiteMotion';
 import '@fontsource-variable/inter';
 import '@fontsource-variable/urbanist';
 import '@fontsource-variable/afacad-flux';
+import '@fontsource/rokkitt/400.css';
+import '@fontsource/rokkitt/700.css';
+import '@fontsource/dancing-script/400.css';
+import '@fontsource/dancing-script/700.css';
 
 import '../styles/tokens.css';
 
@@ -57,6 +61,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://synamize
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Grift font via Google Fonts CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Grift:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <title>{title}</title>
 

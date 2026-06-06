@@ -1,736 +1,390 @@
 ---
 
 const services = [
-
   {
-
     title: 'Content Creation',
-
     description: 'Content designed to attract attention.',
-
-    icon: '/images/services/content.svg',
-
+    icon: '/images/content-creation.svg',
   },
-
   {
-
     title: 'Website Design',
-
-    description: 'Websites built to convert visitors into leads.',
-
-    icon: '/images/services/website.svg',
-
+    description: 'Websites built to convert visitors into leads',
+    icon: '/images/website-design.svg',
   },
-
   {
-
     title: 'Paid Advertising',
-
     description: 'Meta ads designed to generate leads for your business.',
-
-    icon: '/images/services/ads.svg',
-
+    icon: '/images/paid-advertising.svg',
   },
-
   {
-
-    title: 'AI-Powered',
-
-    description: 'Automated systems that reduce manual work.',
-
-    icon: '/images/services/ai.svg',
-
+    title: 'AI – Powered',
+    description: 'Automated systems that reduce manual',
+    icon: '/images/ai-powered.svg',
   },
-
   {
-
     title: 'Social Media Management',
-
     description: 'Content, posting, and management that keeps your business visible every day.',
-
-    icon: '/images/services/social.svg',
-
+    icon: '/images/social-media.svg',
     tall: true,
-
   },
-
 ];
 
 ---
 
-
-
-<section id="services" class="services section" aria-labelledby="services-title">
-
+<section id="services" class="services" aria-labelledby="services-title">
   <div class="services__inner">
 
     <header class="services__head">
-
-      <p class="label">What we offer</p>
-
+      <p class="services__label">Services we offer</p>
       <h2 id="services-title" class="services__title">
-
         Systems Built To Bring More Customers To Your Business
-
       </h2>
-
     </header>
 
-
-
     <div class="services__grid">
-
       {services.map((service) => (
-
         <article class:list={['services__card', { 'services__card--tall': service.tall }]}>
-
-          <div class="services__glow" aria-hidden="true"></div>
-
+          <div class="services__icon-glow" aria-hidden="true"></div>
           <div class="services__icon-wrap" aria-hidden="true">
-
             <img
-
               class="services__icon"
-
               src={service.icon}
-
               alt=""
-
               width="152"
-
               height="152"
-
               loading="lazy"
-
               decoding="async"
-
             />
-
           </div>
-
           <div class="services__copy">
-
             <h3 class="services__card-title">{service.title}</h3>
-
             <p class="services__card-desc">{service.description}</p>
-
           </div>
-
         </article>
-
       ))}
-
     </div>
 
   </div>
-
 </section>
 
-
-
 <style>
-
-  /* Section tokens — Frame 174:24141 / 174:24145 */
-
+  /* ── Section ──────────────────────────────────────────── */
   .services {
-
-    --svc-card-h: 200px;
-
-    --svc-card-tall: 416px;
-
-    --svc-gap: 16px;
-
-    --svc-pad: 26px;
-
-    --svc-text-gap: 4px;
-
-    --svc-glow-size: 166px;
-
-    --svc-glow-top: 14px;
-
-    --svc-glow-right: -68px;
-
-    --svc-icon-size: 152px;
-
-    --svc-icon-top: 22px;
-
-    --svc-icon-right: -22px;
-
-    --svc-head-w: 918px;
-
-    --svc-head-gap: 16px;
-
-    --svc-head-margin: 60px;
-
-    --svc-tall-icon-w: 170px;
-
-    --svc-tall-icon-h: 166px;
-
-    --svc-tall-icon-top: 48px;
-
-    --svc-tall-glow-top: -17px;
-
-    --svc-copy-max: 264px;
-
-
-
-    background: var(--color-bg);
-
-    padding-block: 64px 80px;
-
+    padding-block: 80px 96px;
+    background: transparent;
   }
-
-
 
   .services__inner {
-
-    width: min(100% - 40px, var(--container-max));
-
+    width: min(100% - 40px, 1264px);
     margin-inline: auto;
-
   }
 
-
-
+  /* ── Header ───────────────────────────────────────────── */
   .services__head {
-
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
     gap: 12px;
-
-    margin-inline: auto;
-
     margin-bottom: 40px;
-
     text-align: center;
-
   }
 
-
+  .services__label {
+    margin: 0;
+    font-family: var(--font-rokkitt);
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: var(--color-accent);
+    letter-spacing: 0.01em;
+  }
 
   .services__title {
-
     margin: 0;
-
     font-family: var(--font-display);
-
-    font-size: 28px;
-
-    font-weight: 400;
-
-    line-height: 1;
-
-    color: var(--color-text);
-
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    line-height: 1.15;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+    max-width: 720px;
   }
 
-
-
+  /* ── Grid ─────────────────────────────────────────────── */
   .services__grid {
-
     display: grid;
-
     grid-template-columns: 1fr;
-
-    gap: var(--svc-gap);
-
+    gap: 14px;
   }
 
-
-
+  /* ── Card base ────────────────────────────────────────── */
   .services__card {
-
     position: relative;
-
     display: flex;
-
     flex-direction: column;
-
     justify-content: flex-end;
-
-    min-height: 180px;
-
-    padding: var(--svc-pad);
-
+    min-height: 200px;
+    padding: 24px;
     overflow: hidden;
-
-    background: linear-gradient(135deg, var(--color-glass-from), var(--color-glass-to)), var(--color-glass);
-
-    backdrop-filter: blur(16px);
-
-    border: 1px solid var(--color-glass-border);
-
-    border-radius: var(--card-radius);
-
+    background: linear-gradient(145deg, #111827 0%, #0d1117 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
   }
-
-
 
   .services__card--tall {
-
-    min-height: 280px;
-
+    min-height: 320px;
   }
 
-
-
-  .services__glow {
-
+  /* ── Blue glow behind icon ────────────────────────────── */
+  .services__icon-glow {
     position: absolute;
-
-    top: var(--svc-glow-top);
-
-    right: var(--svc-glow-right);
-
-    width: var(--svc-glow-size);
-
-    height: var(--svc-glow-size);
-
+    top: -30px;
+    right: -30px;
+    width: 220px;
+    height: 220px;
     border-radius: 50%;
-
-    background: radial-gradient(circle, var(--card-glow-color) 0%, transparent 68%);
-
+    background: radial-gradient(circle, rgba(0, 100, 255, 0.45) 0%, rgba(0, 80, 200, 0.15) 45%, transparent 70%);
     pointer-events: none;
-
+    z-index: 0;
   }
 
-
-
-  .services__card--tall .services__glow {
-
-    top: var(--svc-tall-glow-top);
-
+  .services__card--tall .services__icon-glow {
+    top: 20px;
     right: 50%;
-
     transform: translateX(50%);
-
+    width: 260px;
+    height: 260px;
   }
 
-
-
+  /* ── Icon ─────────────────────────────────────────────── */
   .services__icon-wrap {
-
     position: absolute;
-
-    top: var(--svc-icon-top);
-
-    right: var(--svc-icon-right);
-
-    width: var(--svc-icon-size);
-
-    height: var(--svc-icon-size);
-
+    top: 16px;
+    right: -10px;
+    width: 160px;
+    height: 160px;
     display: grid;
-
     place-items: center;
-
     pointer-events: none;
-
+    z-index: 1;
   }
-
-
 
   .services__card--tall .services__icon-wrap {
-
-    top: var(--svc-tall-icon-top);
-
+    top: 24px;
     right: 50%;
-
     transform: translateX(50%);
-
-    width: var(--svc-tall-icon-w);
-
-    height: var(--svc-tall-icon-h);
-
+    width: 180px;
+    height: 180px;
   }
-
-
 
   .services__icon {
-
     width: 100%;
-
     height: 100%;
-
     object-fit: contain;
-
   }
 
-
-
+  /* ── Copy ─────────────────────────────────────────────── */
   .services__copy {
-
     position: relative;
-
-    z-index: 1;
-
+    z-index: 2;
     display: flex;
-
     flex-direction: column;
-
-    gap: var(--svc-text-gap);
-
-    max-width: var(--svc-copy-max);
-
+    gap: 6px;
+    max-width: 270px;
   }
-
-
 
   .services__card--tall .services__copy {
-
     max-width: none;
-
     margin-top: auto;
-
   }
-
-
 
   .services__card-title {
-
     margin: 0;
-
     font-family: var(--font-display);
-
-    font-size: 24px;
-
-    font-weight: 400;
-
-    line-height: 1;
-
-    color: var(--color-text);
-
+    font-size: 1.375rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #ffffff;
+    letter-spacing: -0.01em;
   }
-
-
 
   .services__card-desc {
-
     margin: 0;
-
-    font-size: 18px;
-
-    line-height: 1.2;
-
-    color: var(--color-text-muted);
-
+    font-family: var(--font-rokkitt);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.55);
   }
 
-
-
-  /* Tablet (768–1023px) — 2-column, preserve clip behavior */
-
+  /* ── Tablet 768px+ ─────────────────────────────────────── */
   @media (min-width: 768px) {
-
     .services {
-
-      padding-block: 80px 96px;
-
+      padding-block: 88px 104px;
     }
-
-
 
     .services__inner {
-
-      width: min(100% - 64px, var(--container-max));
-
+      width: min(100% - 64px, 1264px);
     }
-
-
 
     .services__head {
-
       gap: 14px;
-
       margin-bottom: 48px;
-
     }
-
-
 
     .services__title {
-
-      font-size: 32px;
-
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
     }
-
-
 
     .services__grid {
-
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-
+      grid-template-columns: repeat(2, 1fr);
     }
-
-
 
     .services__card {
-
-      min-height: 190px;
-
+      min-height: 200px;
     }
-
-
 
     .services__card--tall {
-
       grid-column: 1 / -1;
-
-      min-height: 320px;
-
+      min-height: 280px;
     }
-
-
-
-    .services__glow {
-
-      width: clamp(130px, 38vw, var(--svc-glow-size));
-
-      height: clamp(130px, 38vw, var(--svc-glow-size));
-
-    }
-
-
-
-    .services__icon-wrap {
-
-      width: clamp(96px, 28vw, var(--svc-icon-size));
-
-      height: clamp(96px, 28vw, var(--svc-icon-size));
-
-    }
-
-
 
     .services__card-title {
-
-      font-size: 26px;
-
+      font-size: 1.5rem;
     }
-
-
 
     .services__card-desc {
-
-      font-size: 19px;
-
+      font-size: 1.0625rem;
     }
-
   }
 
-
-
-  /* Laptop (1024–1439px) — asymmetric grid preserved */
-
+  /* ── Desktop 1024px+ ───────────────────────────────────── */
   @media (min-width: 1024px) {
-
     .services {
-
       padding-block: 96px 120px;
-
     }
-
-
 
     .services__inner {
-
-      width: min(100% - 96px, var(--container-max));
-
+      width: min(100% - 96px, 1264px);
     }
-
-
 
     .services__head {
-
-      align-items: flex-start;
-
-      align-self: flex-start;
-
-      gap: var(--svc-head-gap);
-
-      max-width: var(--svc-head-w);
-
-      margin-inline: 0;
-
       margin-bottom: 52px;
-
-      text-align: left;
-
     }
-
-
 
     .services__title {
-
-      font-size: 34px;
-
+      font-size: clamp(1.875rem, 2.5vw, 2.25rem);
     }
 
-
-
+    /* 3-col grid: 2×2 left + 1 tall right */
     .services__grid {
-
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-
-      grid-template-rows: repeat(2, minmax(0, 1fr));
-
-      gap: var(--svc-gap);
-
-      min-height: clamp(360px, 30.4vw, var(--svc-card-tall));
-
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 200px 200px;
+      gap: 14px;
     }
-
-
 
     .services__card {
-
       min-height: 0;
-
-      height: auto;
-
+      height: 200px;
     }
-
-
 
     .services__card:nth-child(1) { grid-column: 1; grid-row: 1; }
-
     .services__card:nth-child(2) { grid-column: 2; grid-row: 1; }
-
     .services__card:nth-child(3) { grid-column: 1; grid-row: 2; }
-
     .services__card:nth-child(4) { grid-column: 2; grid-row: 2; }
 
-
-
     .services__card--tall {
-
       grid-column: 3;
-
       grid-row: 1 / span 2;
-
-      min-height: 0;
-
+      height: 414px;
+      min-height: 414px;
     }
-
-
 
     .services__card-title {
-
-      font-size: 28px;
-
+      font-size: 1.375rem;
     }
-
-
 
     .services__card-desc {
-
-      font-size: 20px;
-
+      font-size: 1rem;
     }
 
-  }
-
-
-
-  /* Desktop (1440px+) — exact Figma */
-
-  @media (min-width: 1440px) {
-
-    .services {
-
-      padding-block: var(--space-section);
-
+    /* Tall card: icon centered top, copy bottom */
+    .services__card--tall .services__copy {
+      max-width: 280px;
     }
-
-
-
-    .services__inner {
-
-      width: var(--container-max);
-
-    }
-
-
-
-    .services__head {
-
-      margin-bottom: var(--svc-head-margin);
-
-    }
-
-
-
-    .services__title {
-
-      font-size: var(--text-section);
-
-    }
-
-
-
-    .services__grid {
-
-      grid-template-rows: var(--svc-card-h) var(--svc-card-h);
-
-      min-height: var(--svc-card-tall);
-
-    }
-
-
-
-    .services__card {
-
-      height: var(--svc-card-h);
-
-      min-height: var(--svc-card-h);
-
-    }
-
-
-
-    .services__card--tall {
-
-      height: var(--svc-card-tall);
-
-      min-height: var(--svc-card-tall);
-
-    }
-
-
-
-    .services__card-title {
-
-      font-size: var(--text-card-title);
-
-      line-height: 30px;
-
-    }
-
-
 
     .services__card--tall .services__card-title {
-
-      font-size: var(--text-label);
-
-      line-height: 30px;
-
+      font-size: 1.25rem;
     }
-
-
-
-    .services__card-desc {
-
-      font-size: var(--text-body-lg);
-
-      line-height: 23px;
-
-    }
-
   }
 
-</style>
+  /* ── Exact Figma 1440px+ ───────────────────────────────── */
+  @media (min-width: 1440px) {
+    .services {
+      padding-block: 100px 128px;
+    }
 
+    .services__inner {
+      width: 1264px;
+    }
+
+    .services__head {
+      margin-bottom: 60px;
+    }
+
+    .services__title {
+      font-size: 2.25rem;
+    }
+
+    .services__grid {
+      grid-template-rows: 200px 200px;
+      min-height: 414px;
+    }
+
+    .services__card {
+      height: 200px;
+    }
+
+    .services__card--tall {
+      height: 414px;
+      min-height: 414px;
+    }
+
+    .services__card-title {
+      font-size: 1.5rem;
+      line-height: 1.1;
+    }
+
+    .services__card--tall .services__card-title {
+      font-size: 1.25rem;
+    }
+
+    .services__card-desc {
+      font-size: 1.125rem;
+      line-height: 1.45;
+    }
+
+    .services__icon-wrap {
+      width: 152px;
+      height: 152px;
+      top: 22px;
+      right: -22px;
+    }
+
+    .services__icon-glow {
+      width: 200px;
+      height: 200px;
+    }
+
+    .services__card--tall .services__icon-wrap {
+      width: 170px;
+      height: 166px;
+      top: 48px;
+    }
+
+    .services__card--tall .services__icon-glow {
+      top: -17px;
+      width: 260px;
+      height: 260px;
+    }
+  }
+</style>

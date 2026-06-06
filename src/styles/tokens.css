@@ -29,9 +29,14 @@
 
   /* Font stacks */
   --font-sans: 'Inter Variable', system-ui, sans-serif;
-  --font-display: 'Trebuchet MS', 'Segoe UI', sans-serif;
+  --font-display: 'Grift', 'Trebuchet MS', 'Segoe UI', sans-serif;
   --font-accent: 'Urbanist Variable', 'Urbanist', var(--font-sans);
   --font-body-alt: 'Afacad Flux Variable', 'Afacad Flux', var(--font-sans);
+  --font-rokkitt: 'Rokkitt', Georgia, serif;
+  --font-dancing: 'Dancing Script', cursive;
+
+  /* Body background gradient (Figma) */
+  --bg-body-gradient: linear-gradient(180deg, #2A2A2A 0%, #0E0E0E 100%);
 
   --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
