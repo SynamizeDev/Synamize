@@ -1,14 +1,14 @@
 ---
 const stats = [
-  { value: '50M+', label: 'Views Generated' },
-  { value: '527+', label: 'Leads Generated' },
-  { value: '18X', label: 'Higher Engagement' },
-  { value: '7 Days', label: 'To Launch Online' },
+  { value: '50M+', label: 'Brand Awareness' },
+  { value: '$2M+', label: 'Sales Generated' },
+  { value: '15X', label: 'Higher avg ROI achieved' },
+  { value: '7 Days', label: 'Of content creation' },
 ];
 ---
 
 <section id="trust-bar" class="trust-bar" aria-label="Key results">
-  <div class="container trust-bar__inner">
+  <div class="trust-bar__inner">
     <ul class="trust-bar__grid">
       {stats.map((stat) => (
         <li class="trust-bar__card">
@@ -21,21 +21,33 @@ const stats = [
 </section>
 
 <style>
+  /* Section tokens — Frame 174:24250 */
   .trust-bar {
+    --tb-card-w: 295px;
+    --tb-card-h: 112px;
+    --tb-gap: 28px;
+    --tb-pad-x: 60px;
+    --tb-pad-y: 25px;
+    --tb-inner-gap: 6px;
+    --tb-value-size: 33px;
+    --tb-value-lh: 33px;
+    --tb-label-size: 20px;
+    --tb-label-lh: 23px;
+
     position: relative;
     z-index: var(--z-base);
-    padding-block: 0 clamp(2rem, 5vw, 3.5rem);
+    padding-block: 32px 40px;
   }
 
   .trust-bar__inner {
-    width: min(100% - var(--container-pad) * 2, var(--container-max));
+    width: min(100% - 40px, var(--container-max));
     margin-inline: auto;
   }
 
   .trust-bar__grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--gap-stat);
+    gap: 12px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -46,9 +58,9 @@ const stats = [
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: var(--card-gap);
-    min-height: 7.125rem;
-    padding: 1.5625rem clamp(1.25rem, 4vw, 3.75rem);
+    gap: 6px;
+    min-height: 96px;
+    padding: 20px 16px;
     text-align: center;
     background: var(--gradient-stat), var(--card-bg);
     border: 1px solid var(--card-border);
@@ -57,21 +69,108 @@ const stats = [
 
   .trust-bar__value {
     font-family: var(--font-display);
-    font-size: var(--text-stat-value);
+    font-size: 28px;
     font-weight: 700;
-    line-height: var(--leading-tight);
+    line-height: 1;
     color: var(--color-text);
   }
 
   .trust-bar__label {
-    font-size: var(--text-body-lg);
-    line-height: var(--leading-tight);
+    font-size: 16px;
+    line-height: 1;
     color: var(--color-text-muted);
   }
 
-  @media (min-width: 900px) {
+  /* Tablet (768–1023px) */
+  @media (min-width: 768px) {
+    .trust-bar__inner {
+      width: min(100% - 64px, var(--container-max));
+    }
+
+    .trust-bar__grid {
+      gap: 16px;
+    }
+
+    .trust-bar__card {
+      min-height: 104px;
+      padding: 22px 24px;
+    }
+
+    .trust-bar__value {
+      font-size: 30px;
+    }
+
+    .trust-bar__label {
+      font-size: 18px;
+    }
+  }
+
+  /* Laptop (1024–1439px) */
+  @media (min-width: 1024px) {
+    .trust-bar {
+      padding-block: 40px 64px;
+    }
+
+    .trust-bar__inner {
+      width: min(100% - 96px, var(--container-max));
+    }
+
     .trust-bar__grid {
       grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--tb-gap);
+    }
+
+    .trust-bar__card {
+      align-items: center;
+      justify-content: center;
+      min-height: var(--tb-card-h);
+      padding: var(--tb-pad-y) clamp(24px, 4vw, var(--tb-pad-x));
+      gap: var(--tb-inner-gap);
+      text-align: center;
+    }
+
+    .trust-bar__value {
+      font-size: 31px;
+    }
+
+    .trust-bar__label {
+      font-size: 19px;
+    }
+  }
+
+  /* Desktop (1440px+) — exact Figma */
+  @media (min-width: 1440px) {
+    .trust-bar {
+      padding-block: 0;
+    }
+
+    .trust-bar__inner {
+      width: var(--container-max);
+    }
+
+    .trust-bar__grid {
+      grid-template-columns: repeat(4, var(--tb-card-w));
+      gap: var(--tb-gap);
+    }
+
+    .trust-bar__card {
+      width: var(--tb-card-w);
+      height: var(--tb-card-h);
+      min-height: var(--tb-card-h);
+      padding: var(--tb-pad-y) var(--tb-pad-x);
+      gap: var(--tb-inner-gap);
+    }
+
+    .trust-bar__value {
+      font-size: var(--tb-value-size);
+      line-height: var(--tb-value-lh);
+      min-height: var(--tb-value-lh);
+    }
+
+    .trust-bar__label {
+      font-size: var(--tb-label-size);
+      line-height: var(--tb-label-lh);
+      min-height: var(--tb-label-lh);
     }
   }
 </style>

@@ -2,28 +2,28 @@
 const reasons = [
   {
     title: 'Built For Local Businesses',
-    text: 'Strategies built for businesses that want more local customers and stronger online presence.',
+    text: 'We design specifically for businesses that want more customers and stronger online presence.',
   },
   {
     title: 'Results-Focused Approach',
-    text: 'Every system we build is designed to generate leads, trust, and conversions.',
+    text: 'Every system we build is designed to generate leads, sales, and revenue.',
   },
   {
-    title: 'Non Generic Content',
-    text: 'Content designed specifically for your audience and business goals.',
+    title: 'Non-Generic Content',
+    text: 'Unique designs and copy tailored to your brand\'s specific goals.',
   },
   {
     title: 'Long-Term Growth',
-    text: 'Sustainable systems built for growth beyond short-term trends.',
+    text: 'Systems that are built for growth and scale with your business.',
   },
 ];
 ---
 
-<section id="why" class="why section" aria-labelledby="why-heading">
-  <div class="container">
+<section id="why" class="why" aria-labelledby="why-heading">
+  <div class="why__inner">
     <header class="why__head">
       <div class="why__head-main">
-        <p class="label">Why Businesses Choose Synamize</p>
+        <p class="label">Why Customers Choose Synamize</p>
         <h2 id="why-heading" class="why__title">We Build Systems That Grow Businesses</h2>
       </div>
       <p class="why__intro">
@@ -36,8 +36,15 @@ const reasons = [
       {reasons.map((reason) => (
         <li>
           <article class="why__card">
-            <h3 class="why__card-title">{reason.title}</h3>
-            <p class="why__card-text">{reason.text}</p>
+            <div class="why__card-pattern" aria-hidden="true"></div>
+            <div class="why__card-glow" aria-hidden="true"></div>
+            <div class="why__card-content">
+              <p class="why__card-label">Choose Synamize</p>
+              <div class="why__card-body">
+                <h3 class="why__card-title">{reason.title}</h3>
+                <p class="why__card-text">{reason.text}</p>
+              </div>
+            </div>
           </article>
         </li>
       ))}
@@ -46,38 +53,81 @@ const reasons = [
 </section>
 
 <style>
+  /*
+   * Why Choose — Frame 174:24118 (cached metadata)
+   * Section 174:24252 · cards 1264×160
+   */
   .why {
+    --wc-section-pad: 180px;
+    --wc-container: 1264px;
+    --wc-head-gap: 28px;
+    --wc-head-main-w: 653px;
+    --wc-intro-w: 589px;
+    --wc-head-stack-gap: 16px;
+    --wc-head-margin: 60px;
+    --wc-label-size: 24px;
+    --wc-title-size: 36px;
+    --wc-intro-size: 20px;
+    --wc-card-w: 1264px;
+    --wc-card-h: 160px;
+    --wc-card-pad: 26px;
+    --wc-card-radius: 16px;
+    --wc-row-gap: 24px;
+    --wc-card-label-size: 20px;
+    --wc-card-title-size: 30px;
+    --wc-card-title-lh: 30px;
+    --wc-card-text-size: 20px;
+    --wc-card-text-lh: 24px;
+    --wc-card-text-max: 851px;
+    --wc-label-body-gap: 20px;
+    --wc-title-text-gap: 0px;
+    --wc-pattern-top: -17px;
+    --wc-pattern-right: -192px;
+    --wc-pattern-w: 837px;
+    --wc-pattern-h: 207px;
+    --wc-pattern-opacity: 0.22;
+    --wc-glow-top: 0px;
+    --wc-glow-right: -96px;
+    --wc-glow-w: 429px;
+    --wc-glow-h: 160px;
+    --wc-glow-color: rgba(0, 123, 255, 0.42);
+
     background: var(--color-bg);
+    padding-block: 64px 80px;
+  }
+
+  .why__inner {
+    width: min(100% - 40px, var(--wc-container));
+    margin-inline: auto;
   }
 
   .why__head {
     display: flex;
     flex-direction: column;
-    gap: var(--space-header-content);
-    margin-bottom: var(--space-header-content);
+    gap: 24px;
+    margin-bottom: 40px;
   }
 
   .why__head-main {
     display: flex;
     flex-direction: column;
-    gap: var(--space-label-title);
-    max-width: 39.875rem;
+    gap: 12px;
+    max-width: none;
   }
 
   .why__title {
     margin: 0;
     font-family: var(--font-display);
-    font-size: var(--text-section);
+    font-size: 28px;
     font-weight: 400;
-    line-height: var(--leading-tight);
+    line-height: 1;
     color: var(--color-text);
   }
 
   .why__intro {
     margin: 0;
-    max-width: 36.8125rem;
-    font-size: var(--text-body-lg);
-    line-height: var(--leading-snug);
+    font-size: 18px;
+    line-height: 1.2;
     color: var(--color-text);
   }
 
@@ -87,59 +137,251 @@ const reasons = [
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--gap-card);
+    gap: 16px;
   }
 
   .why__card {
+    position: relative;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: var(--card-gap);
-    min-height: 11.25rem;
-    padding: var(--card-padding);
-    background: var(--color-surface);
-    border: 1px solid var(--card-border);
-    border-radius: var(--card-radius);
-    transition: border-color 0.35s var(--ease-luxury), background-color 0.35s var(--ease-luxury);
+    align-items: stretch;
+    width: 100%;
+    min-height: 140px;
+    padding: var(--wc-card-pad);
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--color-glass-from), var(--color-glass-to)), var(--color-glass);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--color-glass-border);
+    border-radius: var(--wc-card-radius);
   }
 
-  .why__card:hover {
-    border-color: var(--color-border-strong);
-    background: var(--color-surface-elevated);
+  .why__card-pattern {
+    position: absolute;
+    top: var(--wc-pattern-top);
+    right: var(--wc-pattern-right);
+    width: var(--wc-pattern-w);
+    height: var(--wc-pattern-h);
+    opacity: var(--wc-pattern-opacity);
+    background-image:
+      linear-gradient(90deg, transparent 0%, rgba(0, 123, 255, 0.06) 100%),
+      repeating-linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0.06) 0,
+        rgba(255, 255, 255, 0.06) 1px,
+        transparent 1px,
+        transparent 14px
+      );
+    pointer-events: none;
+  }
+
+  .why__card-glow {
+    position: absolute;
+    top: var(--wc-glow-top);
+    right: var(--wc-glow-right);
+    width: var(--wc-glow-w);
+    height: var(--wc-glow-h);
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, var(--wc-glow-color) 0%, transparent 72%);
+    pointer-events: none;
+  }
+
+  .why__card-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--wc-label-body-gap);
+    width: 100%;
+    min-height: 100%;
+  }
+
+  .why__card-label {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    margin: 0;
+    padding: 6px 14px;
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--color-accent);
+    background: var(--color-accent-soft);
+    border: 1px solid rgba(0, 123, 255, 0.35);
+    border-radius: 8px;
+  }
+
+  .why__card-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wc-title-text-gap);
+    align-items: flex-start;
+    text-align: left;
   }
 
   .why__card-title {
     margin: 0;
     font-family: var(--font-display);
-    font-size: var(--text-card-title);
+    font-size: 24px;
     font-weight: 400;
-    line-height: var(--leading-tight);
+    line-height: 1;
     color: var(--color-text);
-    text-transform: capitalize;
   }
 
   .why__card-text {
     margin: 0;
-    max-width: 52rem;
-    font-size: var(--text-body-lg);
-    line-height: var(--leading-snug);
+    max-width: 100%;
+    font-size: 18px;
+    line-height: 1.2;
     color: var(--color-text-muted);
   }
 
-  @media (min-width: 900px) {
+  /* Tablet (768–1023px) */
+  @media (min-width: 768px) {
+    .why {
+      padding-block: 80px 96px;
+    }
+
+    .why__inner {
+      width: min(100% - 64px, var(--wc-container));
+    }
+
+    .why__head {
+      gap: 28px;
+      margin-bottom: 48px;
+    }
+
+    .why__head-main {
+      gap: 14px;
+    }
+
+    .why__title {
+      font-size: 32px;
+    }
+
+    .why__intro {
+      font-size: 19px;
+    }
+
+    .why__list {
+      gap: 20px;
+    }
+
+    .why__card {
+      min-height: 150px;
+    }
+
+    .why__card-label {
+      font-size: 15px;
+    }
+
+    .why__card-title {
+      font-size: 26px;
+    }
+
+    .why__card-text {
+      font-size: 19px;
+    }
+  }
+
+  /* Laptop (1024–1439px) */
+  @media (min-width: 1024px) {
+    .why {
+      padding-block: 120px 140px;
+    }
+
+    .why__inner {
+      width: min(100% - 96px, var(--wc-container));
+    }
+
     .why__head {
       flex-direction: row;
       align-items: flex-start;
       justify-content: space-between;
-      gap: var(--gap-stat);
+      gap: var(--wc-head-gap);
+      margin-bottom: 52px;
+    }
+
+    .why__head-main {
+      flex: 0 1 var(--wc-head-main-w);
+      max-width: var(--wc-head-main-w);
+      gap: 15px;
+    }
+
+    .why__intro {
+      flex: 0 1 var(--wc-intro-w);
+      max-width: var(--wc-intro-w);
+      font-size: var(--wc-intro-size);
+      line-height: 1.2;
+    }
+
+    .why__title {
+      font-size: 34px;
     }
 
     .why__list {
-      gap: 1.5rem;
+      gap: var(--wc-row-gap);
     }
 
     .why__card {
-      min-height: 11.25rem;
+      min-height: var(--wc-card-h);
+    }
+
+    .why__card-label {
+      font-size: 16px;
+    }
+
+    .why__card-title {
+      font-size: 28px;
+    }
+
+    .why__card-text {
+      font-size: var(--wc-card-text-size);
+      max-width: var(--wc-card-text-max);
+    }
+  }
+
+  /* Desktop (1440px+) — exact Figma */
+  @media (min-width: 1440px) {
+    .why {
+      padding-block: var(--wc-section-pad);
+    }
+
+    .why__inner {
+      width: var(--wc-container);
+    }
+
+    .why__head {
+      margin-bottom: var(--wc-head-margin);
+    }
+
+    .why__head-main {
+      gap: var(--wc-head-stack-gap);
+    }
+
+    .why__title {
+      font-size: var(--wc-title-size);
+    }
+
+    .why__card {
+      width: var(--wc-card-w);
+      height: var(--wc-card-h);
+      min-height: var(--wc-card-h);
+    }
+
+    .why__card-glow {
+      height: var(--wc-glow-h);
+    }
+
+    .why__card-title {
+      font-size: var(--wc-card-title-size);
+      line-height: var(--wc-card-title-lh);
+    }
+
+    .why__card-text {
+      font-size: var(--wc-card-text-size);
+      line-height: var(--wc-card-text-lh);
+      max-width: var(--wc-card-text-max);
     }
   }
 </style>

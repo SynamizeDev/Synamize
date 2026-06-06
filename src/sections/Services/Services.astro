@@ -1,171 +1,736 @@
 ---
+
 const services = [
+
   {
+
     title: 'Content Creation',
-    description: 'Content designed to attract attention and turn viewers into customers.',
+
+    description: 'Content designed to attract attention.',
+
+    icon: '/images/services/content.svg',
+
   },
+
   {
-    title: 'Paid Advertising',
-    description: 'Meta ads designed to generate qualified leads for your business.',
-  },
-  {
+
     title: 'Website Design',
-    description: 'Fast websites built to convert visitors into leads and appointments.',
+
+    description: 'Websites built to convert visitors into leads.',
+
+    icon: '/images/services/website.svg',
+
   },
+
   {
-    title: 'Growth Systems',
-    description: 'Automated systems that reduce manual work and improve follow-ups.',
+
+    title: 'Paid Advertising',
+
+    description: 'Meta ads designed to generate leads for your business.',
+
+    icon: '/images/services/ads.svg',
+
   },
+
   {
+
+    title: 'AI-Powered',
+
+    description: 'Automated systems that reduce manual work.',
+
+    icon: '/images/services/ai.svg',
+
+  },
+
+  {
+
     title: 'Social Media Management',
+
     description: 'Content, posting, and management that keeps your business visible every day.',
+
+    icon: '/images/services/social.svg',
+
     tall: true,
+
   },
+
 ];
+
 ---
 
+
+
 <section id="services" class="services section" aria-labelledby="services-title">
-  <div class="container">
+
+  <div class="services__inner">
+
     <header class="services__head">
-      <p class="label">Services we offer</p>
+
+      <p class="label">What we offer</p>
+
       <h2 id="services-title" class="services__title">
+
         Systems Built To Bring More Customers To Your Business
+
       </h2>
+
     </header>
 
+
+
     <div class="services__grid">
+
       {services.map((service) => (
+
         <article class:list={['services__card', { 'services__card--tall': service.tall }]}>
+
           <div class="services__glow" aria-hidden="true"></div>
-          <h3 class="services__card-title">{service.title}</h3>
-          <p class="services__card-desc">{service.description}</p>
+
+          <div class="services__icon-wrap" aria-hidden="true">
+
+            <img
+
+              class="services__icon"
+
+              src={service.icon}
+
+              alt=""
+
+              width="152"
+
+              height="152"
+
+              loading="lazy"
+
+              decoding="async"
+
+            />
+
+          </div>
+
+          <div class="services__copy">
+
+            <h3 class="services__card-title">{service.title}</h3>
+
+            <p class="services__card-desc">{service.description}</p>
+
+          </div>
+
         </article>
+
       ))}
+
     </div>
+
   </div>
+
 </section>
 
+
+
 <style>
+
+  /* Section tokens — Frame 174:24141 / 174:24145 */
+
   .services {
+
+    --svc-card-h: 200px;
+
+    --svc-card-tall: 416px;
+
+    --svc-gap: 16px;
+
+    --svc-pad: 26px;
+
+    --svc-text-gap: 4px;
+
+    --svc-glow-size: 166px;
+
+    --svc-glow-top: 14px;
+
+    --svc-glow-right: -68px;
+
+    --svc-icon-size: 152px;
+
+    --svc-icon-top: 22px;
+
+    --svc-icon-right: -22px;
+
+    --svc-head-w: 918px;
+
+    --svc-head-gap: 16px;
+
+    --svc-head-margin: 60px;
+
+    --svc-tall-icon-w: 170px;
+
+    --svc-tall-icon-h: 166px;
+
+    --svc-tall-icon-top: 48px;
+
+    --svc-tall-glow-top: -17px;
+
+    --svc-copy-max: 264px;
+
+
+
     background: var(--color-bg);
+
+    padding-block: 64px 80px;
+
   }
+
+
+
+  .services__inner {
+
+    width: min(100% - 40px, var(--container-max));
+
+    margin-inline: auto;
+
+  }
+
+
 
   .services__head {
+
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
-    gap: var(--space-label-title);
-    max-width: 55.75rem;
+
+    gap: 12px;
+
     margin-inline: auto;
-    margin-bottom: var(--space-header-content);
+
+    margin-bottom: 40px;
+
     text-align: center;
+
   }
+
+
 
   .services__title {
+
     margin: 0;
+
     font-family: var(--font-display);
-    font-size: var(--text-section);
+
+    font-size: 28px;
+
     font-weight: 400;
-    line-height: var(--leading-tight);
+
+    line-height: 1;
+
     color: var(--color-text);
+
   }
+
+
 
   .services__grid {
+
     display: grid;
+
     grid-template-columns: 1fr;
-    gap: var(--gap-card);
+
+    gap: var(--svc-gap);
+
   }
+
+
 
   .services__card {
+
     position: relative;
+
     display: flex;
+
     flex-direction: column;
+
     justify-content: flex-end;
-    gap: var(--card-gap);
-    min-height: 12.5rem;
-    padding: var(--card-padding);
+
+    min-height: 180px;
+
+    padding: var(--svc-pad);
+
     overflow: hidden;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
+
+    background: linear-gradient(135deg, var(--color-glass-from), var(--color-glass-to)), var(--color-glass);
+
+    backdrop-filter: blur(16px);
+
+    border: 1px solid var(--color-glass-border);
+
     border-radius: var(--card-radius);
+
   }
+
+
+
+  .services__card--tall {
+
+    min-height: 280px;
+
+  }
+
+
 
   .services__glow {
+
     position: absolute;
-    top: -2rem;
-    right: -2rem;
-    width: var(--card-glow-size);
-    height: var(--card-glow-size);
+
+    top: var(--svc-glow-top);
+
+    right: var(--svc-glow-right);
+
+    width: var(--svc-glow-size);
+
+    height: var(--svc-glow-size);
+
     border-radius: 50%;
+
     background: radial-gradient(circle, var(--card-glow-color) 0%, transparent 68%);
+
     pointer-events: none;
+
   }
+
+
+
+  .services__card--tall .services__glow {
+
+    top: var(--svc-tall-glow-top);
+
+    right: 50%;
+
+    transform: translateX(50%);
+
+  }
+
+
+
+  .services__icon-wrap {
+
+    position: absolute;
+
+    top: var(--svc-icon-top);
+
+    right: var(--svc-icon-right);
+
+    width: var(--svc-icon-size);
+
+    height: var(--svc-icon-size);
+
+    display: grid;
+
+    place-items: center;
+
+    pointer-events: none;
+
+  }
+
+
+
+  .services__card--tall .services__icon-wrap {
+
+    top: var(--svc-tall-icon-top);
+
+    right: 50%;
+
+    transform: translateX(50%);
+
+    width: var(--svc-tall-icon-w);
+
+    height: var(--svc-tall-icon-h);
+
+  }
+
+
+
+  .services__icon {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+  }
+
+
+
+  .services__copy {
+
+    position: relative;
+
+    z-index: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: var(--svc-text-gap);
+
+    max-width: var(--svc-copy-max);
+
+  }
+
+
+
+  .services__card--tall .services__copy {
+
+    max-width: none;
+
+    margin-top: auto;
+
+  }
+
+
 
   .services__card-title {
-    position: relative;
-    z-index: 1;
+
     margin: 0;
+
     font-family: var(--font-display);
-    font-size: var(--text-card-title);
+
+    font-size: 24px;
+
     font-weight: 400;
-    line-height: var(--leading-tight);
+
+    line-height: 1;
+
     color: var(--color-text);
+
   }
 
-  .services__card--tall .services__card-title {
-    font-size: var(--text-label);
-  }
+
 
   .services__card-desc {
-    position: relative;
-    z-index: 1;
+
     margin: 0;
-    font-size: var(--text-body-lg);
-    line-height: var(--leading-snug);
+
+    font-size: 18px;
+
+    line-height: 1.2;
+
     color: var(--color-text-muted);
+
   }
 
-  @media (min-width: 640px) {
+
+
+  /* Tablet (768–1023px) — 2-column, preserve clip behavior */
+
+  @media (min-width: 768px) {
+
+    .services {
+
+      padding-block: 80px 96px;
+
+    }
+
+
+
+    .services__inner {
+
+      width: min(100% - 64px, var(--container-max));
+
+    }
+
+
+
+    .services__head {
+
+      gap: 14px;
+
+      margin-bottom: 48px;
+
+    }
+
+
+
+    .services__title {
+
+      font-size: 32px;
+
+    }
+
+
+
     .services__grid {
+
       grid-template-columns: repeat(2, minmax(0, 1fr));
+
     }
 
+
+
+    .services__card {
+
+      min-height: 190px;
+
+    }
+
+
+
     .services__card--tall {
+
       grid-column: 1 / -1;
-      min-height: 14rem;
+
+      min-height: 320px;
+
     }
+
+
+
+    .services__glow {
+
+      width: clamp(130px, 38vw, var(--svc-glow-size));
+
+      height: clamp(130px, 38vw, var(--svc-glow-size));
+
+    }
+
+
+
+    .services__icon-wrap {
+
+      width: clamp(96px, 28vw, var(--svc-icon-size));
+
+      height: clamp(96px, 28vw, var(--svc-icon-size));
+
+    }
+
+
+
+    .services__card-title {
+
+      font-size: 26px;
+
+    }
+
+
+
+    .services__card-desc {
+
+      font-size: 19px;
+
+    }
+
   }
 
-  @media (min-width: 900px) {
+
+
+  /* Laptop (1024–1439px) — asymmetric grid preserved */
+
+  @media (min-width: 1024px) {
+
+    .services {
+
+      padding-block: 96px 120px;
+
+    }
+
+
+
+    .services__inner {
+
+      width: min(100% - 96px, var(--container-max));
+
+    }
+
+
+
+    .services__head {
+
+      align-items: flex-start;
+
+      align-self: flex-start;
+
+      gap: var(--svc-head-gap);
+
+      max-width: var(--svc-head-w);
+
+      margin-inline: 0;
+
+      margin-bottom: 52px;
+
+      text-align: left;
+
+    }
+
+
+
+    .services__title {
+
+      font-size: 34px;
+
+    }
+
+
+
     .services__grid {
+
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      grid-template-rows: repeat(2, minmax(12.5rem, auto));
+
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+
+      gap: var(--svc-gap);
+
+      min-height: clamp(360px, 30.4vw, var(--svc-card-tall));
+
     }
 
-    .services__card:nth-child(1) {
-      grid-column: 1;
-      grid-row: 1;
+
+
+    .services__card {
+
+      min-height: 0;
+
+      height: auto;
+
     }
 
-    .services__card:nth-child(2) {
-      grid-column: 1;
-      grid-row: 2;
-    }
 
-    .services__card:nth-child(3) {
-      grid-column: 2;
-      grid-row: 1;
-    }
 
-    .services__card:nth-child(4) {
-      grid-column: 2;
-      grid-row: 2;
-    }
+    .services__card:nth-child(1) { grid-column: 1; grid-row: 1; }
+
+    .services__card:nth-child(2) { grid-column: 2; grid-row: 1; }
+
+    .services__card:nth-child(3) { grid-column: 1; grid-row: 2; }
+
+    .services__card:nth-child(4) { grid-column: 2; grid-row: 2; }
+
+
 
     .services__card--tall {
+
       grid-column: 3;
+
       grid-row: 1 / span 2;
-      min-height: 100%;
+
+      min-height: 0;
+
     }
+
+
+
+    .services__card-title {
+
+      font-size: 28px;
+
+    }
+
+
+
+    .services__card-desc {
+
+      font-size: 20px;
+
+    }
+
   }
+
+
+
+  /* Desktop (1440px+) — exact Figma */
+
+  @media (min-width: 1440px) {
+
+    .services {
+
+      padding-block: var(--space-section);
+
+    }
+
+
+
+    .services__inner {
+
+      width: var(--container-max);
+
+    }
+
+
+
+    .services__head {
+
+      margin-bottom: var(--svc-head-margin);
+
+    }
+
+
+
+    .services__title {
+
+      font-size: var(--text-section);
+
+    }
+
+
+
+    .services__grid {
+
+      grid-template-rows: var(--svc-card-h) var(--svc-card-h);
+
+      min-height: var(--svc-card-tall);
+
+    }
+
+
+
+    .services__card {
+
+      height: var(--svc-card-h);
+
+      min-height: var(--svc-card-h);
+
+    }
+
+
+
+    .services__card--tall {
+
+      height: var(--svc-card-tall);
+
+      min-height: var(--svc-card-tall);
+
+    }
+
+
+
+    .services__card-title {
+
+      font-size: var(--text-card-title);
+
+      line-height: 30px;
+
+    }
+
+
+
+    .services__card--tall .services__card-title {
+
+      font-size: var(--text-label);
+
+      line-height: 30px;
+
+    }
+
+
+
+    .services__card-desc {
+
+      font-size: var(--text-body-lg);
+
+      line-height: 23px;
+
+    }
+
+  }
+
 </style>
+

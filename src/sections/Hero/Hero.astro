@@ -1,38 +1,80 @@
 ---
 ---
 
-<section id="hero" class="hero" aria-labelledby="hero-title">
-  <div class="container hero__inner">
-    <div class="hero__content">
-      <h1 id="hero-title" class="hero__title">
-        <span class="hero__title-line">Turn Your Business Into</span>
-        <span class="hero__title-line hero__title-line--accent">The First Choice In Your City</span>
-      </h1>
+<div class="hero-region">
+  <div class="hero-region__backdrop" aria-hidden="true">
+    <div class="hero-region__photo"></div>
+    <div class="hero-region__overlay"></div>
+  </div>
 
-      <p class="hero__sub">
-        We help local businesses attract customers, build trust, and grow consistently through
-        systems that actually work.
-      </p>
+  <section id="hero" class="hero" aria-labelledby="hero-title">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <h1 id="hero-title" class="hero__title">
+          <span class="hero__title-line hero__title-line--lead">Turn Your Business</span>
+          <span class="hero__title-line hero__title-line--accent">Into The First Choice In Your City</span>
+        </h1>
 
-      <div class="hero__actions">
-        <a href="#contact" class="btn hero__btn hero__btn--gradient">Let's Connect</a>
-        <a href="#testimonials" class="btn btn--fill hero__btn">See Client Results</a>
+        <p class="hero__sub">
+          We help local businesses get more customers through content, paid ads, websites, and automated
+          systems - without wasting months figuring it out alone.
+        </p>
+
+        <div class="hero__actions">
+          <a href="#contact" class="btn btn--gradient hero__btn hero__btn--primary">Book Free Strategy Call</a>
+          <a href="#testimonials" class="btn btn--fill hero__btn hero__btn--secondary">See Client Results</a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>
 
 <style>
+  /* Mobile default (<768px) */
+  .hero-region {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .hero-region__backdrop {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 420px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-region__photo {
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-black);
+    background-image: var(--hero-bg-image, none);
+    background-size: cover;
+    background-position: center top;
+  }
+
+  .hero-region__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(10, 10, 10, 0.15) 0%,
+      rgba(10, 10, 10, 0.65) 58%,
+      var(--color-black) 100%
+    );
+  }
+
   .hero {
     position: relative;
     z-index: var(--z-base);
-    padding-top: clamp(6rem, 14vh, 9rem);
-    padding-bottom: clamp(1.5rem, 4vw, 2.5rem);
+    padding-top: 144px;
+    padding-bottom: 48px;
     background: transparent;
   }
 
   .hero__inner {
-    width: min(100% - var(--container-pad) * 2, var(--container-max));
+    width: min(100% - 40px, var(--container-max));
     margin-inline: auto;
   }
 
@@ -40,8 +82,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-header-content);
-    max-width: var(--container-max);
     margin-inline: auto;
     text-align: center;
   }
@@ -52,10 +92,9 @@
     align-items: center;
     gap: 0;
     margin: 0;
+    width: 100%;
+    max-width: var(--hero-title-width);
     font-family: var(--font-display);
-    font-size: var(--text-display-hero);
-    font-weight: 400;
-    line-height: var(--leading-tight);
     letter-spacing: var(--tracking-tight);
     color: var(--color-text);
   }
@@ -64,18 +103,31 @@
     display: block;
   }
 
+  .hero__title-line--lead {
+    font-size: 28px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 35px;
+  }
+
   .hero__title-line--accent {
+    margin-top: -2px;
     font-family: var(--font-accent);
+    font-size: 32px;
+    font-weight: 700;
+    font-style: normal;
+    line-height: 40px;
     color: var(--color-accent);
   }
 
   .hero__sub {
-    margin: 0;
-    max-width: 42rem;
+    margin: 16px 0 0;
+    width: 100%;
+    max-width: var(--hero-sub-width);
     font-family: var(--font-body-alt);
-    font-size: var(--text-hero-sub);
+    font-size: 18px;
     font-weight: 400;
-    line-height: var(--leading-snug);
+    line-height: 24px;
     color: var(--color-text);
   }
 
@@ -83,43 +135,178 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: var(--gap-card);
+    gap: 12px;
     width: 100%;
-    max-width: 29.375rem;
+    max-width: var(--hero-actions-width);
+    margin-top: 28px;
   }
 
   .hero__btn {
-    min-height: var(--btn-height);
-    padding: var(--btn-padding-y) var(--btn-padding-x);
-    font-family: var(--font-accent);
-    font-size: var(--btn-font-size);
-    font-weight: var(--btn-font-weight);
-    letter-spacing: var(--tracking-normal);
-    text-transform: none;
+    width: 100%;
+    height: 48px;
+    padding-inline: 20px;
+    box-sizing: border-box;
+    white-space: nowrap;
   }
 
-  .hero__btn--gradient {
-    background: var(--gradient-btn);
-    color: var(--color-white);
-    border: var(--btn-border-width) solid var(--color-border-subtle);
-  }
+  /* Tablet (768–1023px) */
+  @media (min-width: 768px) {
+    .hero-region__backdrop {
+      height: 560px;
+    }
 
-  .hero__btn--gradient:hover {
-    border-color: var(--color-border-strong);
-    transform: translateY(-1px);
-  }
+    .hero {
+      padding-top: 180px;
+      padding-bottom: 64px;
+    }
 
-  @media (min-width: 640px) {
+    .hero__inner {
+      width: min(100% - 64px, var(--container-max));
+    }
+
+    .hero__title-line--lead {
+      font-size: 34px;
+      line-height: 42px;
+    }
+
+    .hero__title-line--accent {
+      font-size: 42px;
+      line-height: 52px;
+    }
+
+    .hero__sub {
+      margin-top: 14px;
+      font-size: 22px;
+      line-height: 26px;
+    }
+
     .hero__actions {
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      max-width: none;
-      width: auto;
+      gap: 14px;
+      margin-top: 28px;
     }
 
     .hero__btn {
       width: auto;
+      height: 52px;
+      flex: 1 1 0;
+      max-width: 240px;
+    }
+  }
+
+  /* Laptop (1024–1439px) */
+  @media (min-width: 1024px) {
+    .hero-region__backdrop {
+      height: 720px;
+    }
+
+    .hero {
+      padding-top: 216px;
+      padding-bottom: 80px;
+    }
+
+    .hero__inner {
+      width: min(100% - 96px, var(--container-max));
+    }
+
+    .hero__title {
+      width: 100%;
+      max-width: var(--hero-title-width);
+    }
+
+    .hero__title-line--lead {
+      font-size: 38px;
+      line-height: 48px;
+    }
+
+    .hero__title-line--accent {
+      font-size: 48px;
+      line-height: 60px;
+    }
+
+    .hero__sub {
+      margin-top: 16px;
+      font-size: 26px;
+      line-height: 28px;
+    }
+
+    .hero__actions {
+      gap: 16px;
+      width: auto;
+      max-width: var(--hero-actions-width);
+      margin-top: 32px;
+    }
+
+    .hero__btn {
+      height: var(--btn-height);
+      flex: 0 0 auto;
+      max-width: none;
+    }
+
+    .hero__btn--primary {
+      width: 220px;
+    }
+
+    .hero__btn--secondary {
+      width: 190px;
+    }
+  }
+
+  /* Desktop (1440px+) — exact Figma */
+  @media (min-width: 1440px) {
+    .hero-region__backdrop {
+      height: var(--hero-bg-height);
+    }
+
+    .hero {
+      padding-top: calc(var(--nav-height) + var(--hero-offset));
+      padding-bottom: var(--hero-bottom-gap);
+      min-height: var(--hero-content-height);
+    }
+
+    .hero__inner {
+      width: var(--container-max);
+    }
+
+    .hero__title {
+      width: var(--hero-title-width);
+    }
+
+    .hero__title-line--lead {
+      font-size: var(--text-hero-lead);
+      line-height: var(--leading-hero-lead);
+    }
+
+    .hero__title-line--accent {
+      font-size: var(--text-hero-accent);
+      line-height: var(--leading-hero-accent);
+    }
+
+    .hero__sub {
+      width: var(--hero-sub-width);
+      margin-top: var(--hero-gap-title-sub);
+      font-size: var(--text-hero-sub);
+      line-height: var(--leading-hero-sub);
+    }
+
+    .hero__actions {
+      gap: var(--hero-gap-actions);
+      width: var(--hero-actions-width);
+      margin-top: var(--hero-gap-sub-actions);
+    }
+
+    .hero__btn {
+      height: var(--btn-height);
+    }
+
+    .hero__btn--primary {
+      width: var(--hero-btn-primary-width);
+    }
+
+    .hero__btn--secondary {
+      width: var(--hero-btn-secondary-width);
     }
   }
 </style>

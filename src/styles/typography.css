@@ -17,10 +17,18 @@
   --text-body-lg: 1.25rem;
   --text-label: 1.5rem;
   --text-card-title: 1.875rem;
-  --text-hero-sub: clamp(1.375rem, 2.5vw, 1.875rem);
+  --text-hero-sub: 30px;
   --text-section: 2.25rem;
   --text-display-hero: clamp(2.5rem, 5vw, 3.75rem);
-  --text-stat-value: 1.875rem;
+  --text-stat-value: 2.0625rem;
+  --text-why-label: 1.25rem;
+  --text-why-title: 2.375rem;
+  /* Hero headline — nodes 174:24132 (53px bbox) / 174:24133 (70px bbox) */
+  --text-hero-lead: 42px;
+  --text-hero-accent: 56px;
+  --leading-hero-lead: 53px;
+  --leading-hero-accent: 70px;
+  --leading-hero-sub: 32px;
 
   --leading-tight: 1;
   --leading-snug: 1.2;

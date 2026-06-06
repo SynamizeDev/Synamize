@@ -7,23 +7,43 @@ const links = [
 ];
 ---
 <header class="nav" id="nav" data-nav>
-  <nav class="nav__inner container" aria-label="Main">
-    <a href="#" class="nav__logo">Synamize</a>
-    <ul class="nav__links">
+  <nav class="nav__inner" aria-label="Main">
+    <a href="#" class="nav__logo" aria-label="Synamize home">
+      <img
+        class="nav__logo-img"
+        src="/logo.svg"
+        alt=""
+        width="173"
+        height="36"
+        decoding="async"
+      />
+    </a>
+
+    <ul class="nav__links" hidden>
       {links.map((l) => (
         <li><a href={l.href} class="link-underline">{l.label}</a></li>
       ))}
     </ul>
-    <a href="#contact" class="btn btn--fill nav__cta">Let's Connect</a>
-    <button type="button" class="nav__toggle" aria-label="Menu" aria-expanded="false" data-nav-toggle>
+
+    <a href="#contact" class="btn btn--fill nav__cta">Lets Connect</a>
+
+    <button
+      type="button"
+      class="nav__toggle"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="nav-drawer"
+      data-nav-toggle
+    >
       <span></span><span></span>
     </button>
   </nav>
-  <div class="nav__drawer" data-nav-drawer hidden>
+
+  <div class="nav__drawer" id="nav-drawer" data-nav-drawer hidden>
     {links.map((l) => (
       <a href={l.href} class="nav__drawer-link">{l.label}</a>
     ))}
-    <a href="#contact" class="btn btn--fill">Let's Connect</a>
+    <a href="#contact" class="btn btn--fill nav__drawer-cta">Lets Connect</a>
   </div>
 </header>
 
@@ -41,21 +61,32 @@ const links = [
   toggle?.addEventListener('click', () => {
     const open = toggle.getAttribute('aria-expanded') === 'true';
     toggle.setAttribute('aria-expanded', String(!open));
+    toggle.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
     if (drawer) drawer.hidden = open;
+    document.body.style.overflow = open ? '' : 'hidden';
+  });
+
+  drawer?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      if (!toggle || !drawer) return;
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+      drawer.hidden = true;
+      document.body.style.overflow = '';
+    });
   });
 </script>
 
 <style>
+  /* Mobile default (<768px) */
   .nav {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: var(--z-nav);
-    padding: 1.25rem 0;
-    background: rgba(24, 24, 24, 0.72);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    height: 80px;
+    background: transparent;
     border-bottom: 1px solid transparent;
     transition: background 0.4s var(--ease-luxury), border-color 0.4s var(--ease-luxury);
   }
@@ -64,22 +95,29 @@ const links = [
     background: var(--color-glass);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--color-border);
+    border-bottom-color: var(--color-border);
   }
 
   .nav__inner {
     display: flex;
     align-items: center;
-    gap: 2.5rem;
+    justify-content: space-between;
+    height: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-inline: 20px;
   }
 
   .nav__logo {
-    font-size: var(--text-sm);
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-white);
-    margin-right: auto;
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .nav__logo-img {
+    display: block;
+    width: 140px;
+    height: auto;
+    aspect-ratio: 173 / 36;
   }
 
   .nav__links {
@@ -92,19 +130,19 @@ const links = [
 
   .nav__cta {
     display: none;
-    padding: 0.65rem 1.25rem;
-    font-size: var(--text-xs);
-  }
-
-  @media (min-width: 900px) {
-    .nav__links, .nav__cta { display: flex; }
-    .nav__toggle { display: none; }
+    flex-shrink: 0;
+    width: auto;
+    padding-inline: 20px;
+    box-sizing: border-box;
   }
 
   .nav__toggle {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 7px;
+    width: 44px;
+    height: 44px;
     padding: 4px;
   }
 
@@ -113,30 +151,115 @@ const links = [
     width: 22px;
     height: 1px;
     background: var(--color-white);
+    transition: transform 0.35s var(--ease-luxury), opacity 0.35s var(--ease-luxury);
+  }
+
+  .nav__toggle[aria-expanded='true'] span:first-child {
+    transform: translateY(4px) rotate(45deg);
+  }
+
+  .nav__toggle[aria-expanded='true'] span:last-child {
+    transform: translateY(-4px) rotate(-45deg);
   }
 
   .nav__drawer {
     position: fixed;
-    inset: 0;
-    top: 64px;
+    inset: 80px 0 0;
     z-index: calc(var(--z-nav) - 1);
     background: var(--color-black);
-    padding: 2rem var(--container-pad);
+    padding: 32px 20px 40px;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 24px;
     border-top: 1px solid var(--color-border);
+    overflow-y: auto;
   }
 
-  .nav__drawer[hidden] { display: none; }
+  .nav__drawer[hidden] {
+    display: none;
+  }
 
   .nav__drawer-link {
-    font-size: var(--text-2xl);
+    font-family: var(--font-accent);
+    font-size: 24px;
     font-weight: 500;
+    line-height: 1;
     color: var(--color-white);
   }
 
-  @media (min-width: 900px) {
-    .nav__drawer { display: none !important; }
+  .nav__drawer-cta {
+    align-self: flex-start;
+    margin-top: 8px;
+  }
+
+  /* Tablet (768–1023px) */
+  @media (min-width: 768px) {
+    .nav {
+      height: 100px;
+    }
+
+    .nav__inner {
+      padding-inline: 32px;
+    }
+
+    .nav__logo-img {
+      width: 155px;
+    }
+
+    .nav__drawer {
+      inset: 100px 0 0;
+      padding-inline: 32px;
+    }
+  }
+
+  /* Laptop (1024–1439px) */
+  @media (min-width: 1024px) {
+    .nav {
+      height: 120px;
+    }
+
+    .nav__inner {
+      padding-inline: 48px;
+    }
+
+    .nav__logo-img {
+      width: 165px;
+    }
+
+    .nav__cta {
+      display: inline-flex;
+    }
+
+    .nav__toggle {
+      display: none;
+    }
+
+    .nav__drawer {
+      display: none !important;
+    }
+
+    .nav__drawer {
+      inset: 120px 0 0;
+    }
+  }
+
+  /* Desktop (1440px+) — exact Figma */
+  @media (min-width: 1440px) {
+    .nav {
+      height: var(--nav-height);
+    }
+
+    .nav__inner {
+      padding-inline: var(--nav-pad);
+    }
+
+    .nav__logo-img {
+      width: var(--nav-logo-width);
+      height: var(--nav-logo-height);
+    }
+
+    .nav__cta {
+      width: var(--nav-cta-width);
+    }
   }
 </style>

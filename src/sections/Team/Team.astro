@@ -5,14 +5,14 @@ import jatinImage from '../../assets/images/team/jatin-prajapat.png';
 const members = [
   {
     name: 'Jay Prajapat',
-    role: 'Co-Founder',
+    role: 'CO-Founder',
     bio: 'Focused on systems, operations, and growth strategies that help businesses scale efficiently and build a stronger online presence.',
     image: jayImage.src,
     imageAlt: 'Jay Prajapat, Co-Founder of Synamize',
   },
   {
     name: 'Jatin Prajapat',
-    role: 'Co-Founder',
+    role: 'CO-Founder',
     bio: 'Focused on customer acquisition, advertising, and digital systems that help businesses attract leads and drive growth.',
     image: jatinImage.src,
     imageAlt: 'Jatin Prajapat, Co-Founder of Synamize',
@@ -26,7 +26,8 @@ const members = [
       <div class="team__head-main">
         <p class="label">Meet The Team Behind Synamize</p>
         <h2 id="team-heading" class="team__title">
-          Our focus isn't vanity metrics, it's real business growth.
+          <span class="team__title-line">Our focus isn't vanity metrics,</span>
+          <span class="team__title-line">it's real business growth.</span>
         </h2>
       </div>
       <p class="team__intro">
@@ -98,6 +99,10 @@ const members = [
     color: var(--color-text);
   }
 
+  .team__title-line {
+    display: block;
+  }
+
   .team__intro {
     margin: 0;
     max-width: 36.8125rem;
@@ -120,6 +125,7 @@ const members = [
     flex-direction: column;
     align-items: center;
     gap: 1.375rem;
+    min-height: 30.75rem;
     padding: 2.25rem var(--card-padding);
     text-align: center;
     background: var(--color-surface);
@@ -179,11 +185,11 @@ const members = [
     margin: 0;
     font-family: var(--font-display);
     font-size: var(--text-label);
-    font-weight: 400;
+    font-weight: 700;
     line-height: var(--leading-tight);
     color: var(--color-accent);
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.02em;
   }
 
   .team__bio {
