@@ -1,10 +1,18 @@
 ---
+import TrustBar from '../TrustBar/TrustBar.astro';
 ---
 
 <div class="hero-region">
   <div class="hero-region__backdrop" aria-hidden="true">
-    <div class="hero-region__photo"></div>
-    <div class="hero-region__overlay"></div>
+    <img
+      class="hero-region__photo"
+      src="/images/hero.png"
+      alt=""
+      width="1920"
+      height="873"
+      fetchpriority="high"
+      decoding="async"
+    />
   </div>
 
   <section id="hero" class="hero" aria-labelledby="hero-title">
@@ -12,35 +20,49 @@
       <div class="hero__content">
         <h1 id="hero-title" class="hero__title">
           <span class="hero__title-line hero__title-line--lead">Turn Your Business</span>
-          <span class="hero__title-line hero__title-line--accent">Into The First Choice In Your City</span>
+          <span class="hero__title-line hero__title-line--accent">
+            <span class="hero__accent-part">Into The First Choice</span>
+            <span class="hero__accent-part">In Your City</span>
+          </span>
         </h1>
 
         <p class="hero__sub">
-          We help local businesses get more customers through content, paid ads, websites, and automated
-          systems - without wasting months figuring it out alone.
+          <span class="hero__sub-line">We help local businesses get more customers through content, paid ads, websites,</span>
+          <span class="hero__sub-line">and automated systems - without wasting months figuring it out alone.</span>
         </p>
 
         <div class="hero__actions">
           <a href="#contact" class="btn btn--gradient hero__btn hero__btn--primary">Book Free Strategy Call</a>
-          <a href="#testimonials" class="btn btn--fill hero__btn hero__btn--secondary">See Client Results</a>
+          <a href="#testimonials" class="btn btn--gradient hero__btn hero__btn--secondary">See Client Results</a>
         </div>
       </div>
     </div>
   </section>
+
+  <TrustBar />
 </div>
 
 <style>
   /* Mobile default (<768px) */
   .hero-region {
+    --hero-lead-size: 28px;
+    --hero-lead-lh: 35px;
+    --hero-accent-size: 32px;
+    --hero-accent-lh: 40px;
+    --hero-sub-size: 18px;
+    --hero-sub-lh: 1.35;
+
     position: relative;
     isolation: isolate;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
+    min-height: 520px;
   }
 
   .hero-region__backdrop {
     position: absolute;
-    inset: 0 0 auto;
-    height: 420px;
+    inset: 0;
     pointer-events: none;
     z-index: 0;
   }
@@ -48,21 +70,21 @@
   .hero-region__photo {
     position: absolute;
     inset: 0;
-    background-color: transparent;
-    background-image: var(--hero-bg-image, none);
-    background-size: cover;
-    background-position: center top;
-  }
-
-  .hero-region__overlay {
-    display: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    pointer-events: none;
+    user-select: none;
   }
 
   .hero {
     position: relative;
     z-index: var(--z-base);
+    flex: 1 1 auto;
     padding-top: 144px;
-    padding-bottom: 48px;
+    padding-bottom: 0;
     background: transparent;
   }
 
@@ -75,6 +97,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 16px;
     margin-inline: auto;
     text-align: center;
   }
@@ -87,8 +110,6 @@
     margin: 0;
     width: 100%;
     max-width: var(--hero-title-width);
-    font-family: var(--font-display);
-    letter-spacing: var(--tracking-tight);
     color: var(--color-text);
   }
 
@@ -96,32 +117,53 @@
     display: block;
   }
 
-  .hero__title-line--lead {
-    font-size: 28px;
+  .hero__title .hero__title-line--lead {
+    font-family: var(--font-display);
+    font-size: var(--hero-lead-size);
     font-weight: 400;
     font-style: italic;
-    line-height: 35px;
+    line-height: var(--hero-lead-lh);
+    letter-spacing: 0;
+    color: var(--color-text);
   }
 
-  .hero__title-line--accent {
+  .hero__title .hero__title-line--accent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: -2px;
-    font-family: var(--font-accent);
-    font-size: 32px;
+    font-family: var(--font-display);
+    font-size: var(--hero-accent-size);
     font-weight: 700;
     font-style: normal;
-    line-height: 40px;
+    line-height: var(--hero-accent-lh);
+    letter-spacing: 0;
     color: var(--color-accent);
   }
 
+  .hero__accent-part {
+    display: block;
+  }
+
   .hero__sub {
-    margin: 16px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin: 0;
     width: 100%;
     max-width: var(--hero-sub-width);
-    font-family: var(--font-body-alt);
-    font-size: 18px;
+    font-family: var(--font-rokkitt);
+    font-size: var(--hero-sub-size);
     font-weight: 400;
-    line-height: 24px;
+    letter-spacing: 0;
     color: var(--color-text);
+  }
+
+  .hero__sub-line {
+    display: block;
+    line-height: var(--hero-sub-lh);
+    text-align: center;
   }
 
   .hero__actions {
@@ -131,167 +173,45 @@
     gap: 12px;
     width: 100%;
     max-width: var(--hero-actions-width);
-    margin-top: 28px;
+    margin: 0;
+    align-self: center;
   }
 
-  .hero__btn {
+  a.hero__btn {
     width: 100%;
-    height: 48px;
-    padding-inline: 20px;
+    height: var(--btn-height);
+    padding: var(--btn-padding-y) var(--btn-padding-x);
     box-sizing: border-box;
     white-space: nowrap;
+    font-family: var(--font-display);
+    font-weight: var(--btn-font-weight);
+    font-size: var(--btn-font-size);
+    line-height: var(--btn-line-height);
+    color: var(--color-white);
+    background: var(--gradient-btn);
+    border: var(--btn-border-width) solid var(--btn-border-default);
+    border-radius: var(--radius-btn);
   }
 
-  /* Tablet (768–1023px) */
-  @media (min-width: 768px) {
-    .hero-region__backdrop {
-      height: 560px;
-    }
+  .hero__btn:hover {
+    background: var(--gradient-btn-hover);
+    border-color: var(--btn-border-hover);
+    transform: translateY(-1px);
+  }
 
-    .hero {
-      padding-top: 180px;
-      padding-bottom: 64px;
-    }
-
-    .hero__inner {
-      width: min(100% - 64px, var(--container-max));
-    }
-
-    .hero__title-line--lead {
-      font-size: 34px;
-      line-height: 42px;
-    }
-
-    .hero__title-line--accent {
-      font-size: 42px;
-      line-height: 52px;
-    }
-
-    .hero__sub {
-      margin-top: 14px;
-      font-size: 22px;
-      line-height: 26px;
-    }
-
+  /* Small tablet — side-by-side CTAs */
+  @media (min-width: 480px) {
     .hero__actions {
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      gap: 14px;
-      margin-top: 28px;
-    }
-
-    .hero__btn {
-      width: auto;
-      height: 52px;
-      flex: 1 1 0;
-      max-width: 240px;
-    }
-  }
-
-  /* Laptop (1024–1439px) */
-  @media (min-width: 1024px) {
-    .hero-region__backdrop {
-      height: 720px;
-    }
-
-    .hero {
-      padding-top: 216px;
-      padding-bottom: 80px;
-    }
-
-    .hero__inner {
-      width: min(100% - 96px, var(--container-max));
-    }
-
-    .hero__title {
-      width: 100%;
-      max-width: var(--hero-title-width);
-    }
-
-    .hero__title-line--lead {
-      font-size: 38px;
-      line-height: 48px;
-    }
-
-    .hero__title-line--accent {
-      font-size: 48px;
-      line-height: 60px;
-    }
-
-    .hero__sub {
-      margin-top: 16px;
-      font-size: 26px;
-      line-height: 28px;
-    }
-
-    .hero__actions {
-      gap: 16px;
-      width: auto;
-      max-width: var(--hero-actions-width);
-      margin-top: 32px;
-    }
-
-    .hero__btn {
-      height: var(--btn-height);
-      flex: 0 0 auto;
-      max-width: none;
-    }
-
-    .hero__btn--primary {
-      width: 220px;
-    }
-
-    .hero__btn--secondary {
-      width: 190px;
-    }
-  }
-
-  /* Desktop (1440px+) — exact Figma */
-  @media (min-width: 1440px) {
-    .hero-region__backdrop {
-      height: var(--hero-bg-height);
-    }
-
-    .hero {
-      padding-top: calc(var(--nav-height) + var(--hero-offset));
-      padding-bottom: var(--hero-bottom-gap);
-      min-height: var(--hero-content-height);
-    }
-
-    .hero__inner {
-      width: var(--container-max);
-    }
-
-    .hero__title {
-      width: var(--hero-title-width);
-    }
-
-    .hero__title-line--lead {
-      font-size: var(--text-hero-lead);
-      line-height: var(--leading-hero-lead);
-    }
-
-    .hero__title-line--accent {
-      font-size: var(--text-hero-accent);
-      line-height: var(--leading-hero-accent);
-    }
-
-    .hero__sub {
-      width: var(--hero-sub-width);
-      margin-top: var(--hero-gap-title-sub);
-      font-size: var(--text-hero-sub);
-      line-height: var(--leading-hero-sub);
-    }
-
-    .hero__actions {
       gap: var(--hero-gap-actions);
-      width: var(--hero-actions-width);
-      margin-top: var(--hero-gap-sub-actions);
+      margin-inline: auto;
     }
 
-    .hero__btn {
-      height: var(--btn-height);
+    a.hero__btn {
+      width: auto;
+      flex: 0 0 auto;
     }
 
     .hero__btn--primary {
@@ -300,6 +220,177 @@
 
     .hero__btn--secondary {
       width: var(--hero-btn-secondary-width);
+    }
+  }
+
+  /* Tablet (768–1023px) */
+  @media (min-width: 768px) {
+    .hero-region {
+      --hero-lead-size: 34px;
+      --hero-lead-lh: 42px;
+      --hero-accent-size: 42px;
+      --hero-accent-lh: 52px;
+      --hero-sub-size: 22px;
+      --hero-sub-lh: 26px;
+
+      min-height: 640px;
+    }
+
+    .hero {
+      padding-top: 180px;
+    }
+
+    .hero__inner {
+      width: min(100% - 64px, var(--container-max));
+    }
+
+    .hero__content {
+      gap: 0;
+    }
+
+    .hero__sub {
+      margin-top: 18px;
+    }
+
+    .hero__actions {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: var(--hero-gap-actions);
+      width: min(100%, var(--hero-actions-width));
+      margin-top: 32px;
+      margin-inline: auto;
+    }
+  }
+
+  /* Laptop (1024–1439px) */
+  @media (min-width: 1024px) {
+    .hero-region {
+      --hero-lead-size: 38px;
+      --hero-lead-lh: 48px;
+      --hero-accent-size: 48px;
+      --hero-accent-lh: 60px;
+      --hero-sub-size: 26px;
+      --hero-sub-lh: 1.25;
+
+      min-height: 760px;
+    }
+
+    .hero {
+      padding-top: 216px;
+    }
+
+    .hero__inner {
+      width: min(100% - 96px, var(--container-max));
+      margin-inline: auto;
+    }
+
+    .hero__title {
+      width: 100%;
+      max-width: var(--hero-title-width);
+    }
+
+    .hero__content {
+      gap: 0;
+    }
+
+    .hero__sub {
+      margin-top: var(--hero-gap-title-sub);
+    }
+
+    .hero__actions {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: var(--hero-gap-actions);
+      width: var(--hero-actions-width);
+      max-width: 100%;
+      margin-top: var(--hero-gap-sub-actions);
+      margin-inline: auto;
+    }
+  }
+
+  /* Desktop (1440px+) — Figma 174:24129 (1264×300 @ y250) */
+  @media (min-width: 1440px) {
+    .hero-region {
+      --hero-lead-size: var(--text-hero-lead);
+      --hero-lead-lh: var(--leading-hero-lead);
+      --hero-accent-size: var(--text-hero-accent);
+      --hero-accent-lh: var(--leading-hero-accent);
+      --hero-sub-size: 28px;
+      --hero-sub-lh: 32px;
+
+      height: var(--hero-bg-height);
+      min-height: var(--hero-bg-height);
+    }
+
+    .hero-region__photo {
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .hero {
+      padding-top: var(--hero-content-top);
+      flex: 0 0 auto;
+    }
+
+    .hero__inner {
+      width: var(--hero-content-width);
+      margin-inline: auto;
+    }
+
+    .hero__content {
+      gap: 0;
+      width: var(--hero-content-width);
+      min-height: var(--hero-content-height);
+      align-items: center;
+    }
+
+    .hero__title {
+      flex-shrink: 0;
+      width: 100%;
+      max-width: var(--hero-sub-width);
+    }
+
+    .hero__title .hero__title-line--accent {
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: center;
+      white-space: nowrap;
+    }
+
+    .hero__title .hero__title-line--accent .hero__accent-part {
+      display: inline;
+    }
+
+    .hero__title .hero__title-line--accent .hero__accent-part + .hero__accent-part::before {
+      content: ' ';
+    }
+
+    .hero__sub {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: var(--hero-sub-width);
+      min-height: var(--hero-sub-height);
+      margin-top: var(--hero-gap-title-sub);
+    }
+
+    .hero__sub-line {
+      white-space: nowrap;
+    }
+
+    .hero__actions {
+      flex-shrink: 0;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: var(--hero-gap-actions);
+      width: var(--hero-actions-width);
+      margin-top: var(--hero-gap-sub-actions);
+      margin-inline: auto;
+      align-self: center;
     }
   }
 </style>

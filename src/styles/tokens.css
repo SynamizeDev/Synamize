@@ -1,12 +1,20 @@
 :root {
   /* Core palette (Figma Landing Page) */
-  --color-black: #0a0a0a;
+  --color-black: #0e0e0e;
+  --color-bg-page-top: #2a2a2a;
+  --color-bg-page-bottom: #0e0e0e;
+  --gradient-site-bg: linear-gradient(
+    135deg,
+    var(--color-bg-page-top) 0%,
+    var(--color-bg-page-bottom) 100%
+  );
   --color-red: #b11212;
   --color-blue: #007bff;
   --color-white: #ffffff;
 
   /* Semantic aliases */
-  --color-bg: var(--color-black);
+  --color-bg: var(--gradient-site-bg);
+  --color-bg-solid: var(--color-bg-page-bottom);
   --color-surface: #111111;
   --color-surface-elevated: #161616;
   --color-text: var(--color-white);
@@ -33,6 +41,7 @@
   --font-accent: 'Urbanist Variable', 'Urbanist', var(--font-sans);
   --font-body-alt: 'Afacad Flux Variable', 'Afacad Flux', var(--font-sans);
   --font-rokkitt: 'Rokkitt', Georgia, serif;
+  --font-hero-sub: 'Lora', Georgia, 'Times New Roman', serif;
   --font-dancing: 'Dancing Script', cursive;
 
   /* Body background gradient (Figma) */
@@ -56,17 +65,24 @@
    * Content top 250px · offset below nav = 115px
    */
   --hero-bg-height: 873px;
+  --hero-content-top: 250px;
   --hero-offset: 115px;
   --hero-gap-title-sub: 20px;
   --hero-gap-sub-actions: 40px;
   --hero-gap-actions: 20px;
   --hero-title-width: 825px;
+  --hero-title-height: 121px;
   --hero-sub-width: 974px;
+  --hero-sub-height: 64px;
   --hero-actions-width: 476px;
   --hero-btn-primary-width: 253px;
   --hero-btn-secondary-width: 203px;
+  --hero-content-width: 1264px;
   --hero-content-height: 300px;
-  --hero-bottom-gap: 100px;
+  /* Buttons → TrustBar — half of remaining space in 873px hero frame */
+  --hero-gap-actions-trust: calc(
+    (var(--hero-bg-height) - var(--hero-content-top) - var(--hero-content-height) - var(--stat-card-height)) / 2
+  );
 
   /* Layout spacing (1920 artboard → 1264 content column) */
   --space-section: clamp(6rem, 10vw, 11.25rem);
@@ -107,7 +123,15 @@
   --service-icon-right: -22px;
   --services-head-width: 918px;
   --services-head-gap: 16px;
-  --services-head-margin: 60px;
+  --services-head-margin: 30px;
+  --services-pad-top: 50px;
+  --services-pad-bottom: 64px;
+  /* Slack below TrustBar inside 873px hero — pull Services up by half */
+  --hero-bottom-space: calc(
+    var(--hero-bg-height) - var(--hero-content-top) - var(--hero-content-height) -
+      var(--hero-gap-actions-trust) - var(--stat-card-height)
+  );
+  --services-pull-up: calc(var(--hero-bottom-space) / 2);
   --service-tall-icon-width: 170px;
   --service-tall-icon-height: 166px;
   --service-tall-icon-top: 48px;
@@ -148,6 +172,14 @@
     var(--color-accent) 49.289%,
     var(--color-accent-deep) 91.862%
   );
+  --gradient-btn-hover: linear-gradient(
+    90deg,
+    var(--color-accent-hover) 6.773%,
+    #33a1ff 49.289%,
+    var(--color-accent-hover) 91.862%
+  );
+  --btn-border-default: rgba(0, 123, 255, 0.55);
+  --btn-border-hover: rgba(0, 123, 255, 0.7);
   --gradient-stat: linear-gradient(
     90deg,
     var(--color-glass-from),

@@ -14,7 +14,7 @@ const services = [
   {
     title: 'Paid Advertising',
     description: 'Meta ads designed to generate leads for your business.',
-    icon: '/images/paid-advertising.svg',
+    icon: '/images/social-media.svg',
   },
   {
     title: 'AI – Powered',
@@ -24,7 +24,7 @@ const services = [
   {
     title: 'Social Media Management',
     description: 'Content, posting, and management that keeps your business visible every day.',
-    icon: '/images/social-media.svg',
+    icon: '/images/paid-advertising.svg',
     tall: true,
   },
 ];
@@ -70,7 +70,7 @@ const services = [
 <style>
   /* ── Section ──────────────────────────────────────────── */
   .services {
-    padding-block: 80px 96px;
+    padding-block: 40px 48px;
     background: transparent;
   }
 
@@ -85,17 +85,18 @@ const services = [
     flex-direction: column;
     align-items: center;
     gap: 12px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     text-align: center;
   }
 
   .services__label {
     margin: 0;
-    font-family: var(--font-rokkitt);
-    font-size: 1.125rem;
-    font-weight: 400;
+    font-family: var(--font-dancing);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: normal;
     color: var(--color-accent);
-    letter-spacing: 0.01em;
+    letter-spacing: 0;
   }
 
   .services__title {
@@ -106,7 +107,6 @@ const services = [
     line-height: 1.15;
     color: #ffffff;
     letter-spacing: -0.01em;
-    max-width: 720px;
   }
 
   /* ── Grid ─────────────────────────────────────────────── */
@@ -219,7 +219,7 @@ const services = [
   /* ── Tablet 768px+ ─────────────────────────────────────── */
   @media (min-width: 768px) {
     .services {
-      padding-block: 88px 104px;
+      padding-block: 44px 52px;
     }
 
     .services__inner {
@@ -228,7 +228,7 @@ const services = [
 
     .services__head {
       gap: 14px;
-      margin-bottom: 48px;
+      margin-bottom: 24px;
     }
 
     .services__title {
@@ -260,7 +260,7 @@ const services = [
   /* ── Desktop 1024px+ ───────────────────────────────────── */
   @media (min-width: 1024px) {
     .services {
-      padding-block: 96px 120px;
+      padding-block: 48px 60px;
     }
 
     .services__inner {
@@ -268,11 +268,15 @@ const services = [
     }
 
     .services__head {
-      margin-bottom: 52px;
+      width: 100%;
+      max-width: var(--services-head-width);
+      margin-inline: auto;
+      margin-bottom: 26px;
     }
 
     .services__title {
       font-size: clamp(1.875rem, 2.5vw, 2.25rem);
+      white-space: nowrap;
     }
 
     /* 3-col grid: 2×2 left + 1 tall right */
@@ -320,7 +324,8 @@ const services = [
   /* ── Exact Figma 1440px+ ───────────────────────────────── */
   @media (min-width: 1440px) {
     .services {
-      padding-block: 100px 128px;
+      margin-top: calc(var(--services-pull-up) * -1);
+      padding-block: var(--services-pad-top) var(--services-pad-bottom);
     }
 
     .services__inner {
@@ -328,11 +333,15 @@ const services = [
     }
 
     .services__head {
-      margin-bottom: 60px;
+      gap: var(--services-head-gap);
+      width: var(--services-head-width);
+      margin-bottom: var(--services-head-margin);
+      margin-inline: auto;
     }
 
     .services__title {
       font-size: 2.25rem;
+      white-space: nowrap;
     }
 
     .services__grid {

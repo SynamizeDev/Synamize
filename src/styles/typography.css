@@ -17,7 +17,7 @@
   --text-body-lg: 1.25rem;
   --text-label: 1.5rem;
   --text-card-title: 1.875rem;
-  --text-hero-sub: 30px;
+  --text-hero-sub: 28px;
   --text-section: 2.25rem;
   --text-display-hero: clamp(2.5rem, 5vw, 3.75rem);
   --text-stat-value: 2.0625rem;
@@ -92,7 +92,9 @@ h1, h2, h3 {
 }
 
 .stat-label {
+  font-family: var(--font-rokkitt);
   font-size: var(--text-body-lg);
+  font-weight: 400;
   line-height: var(--leading-tight);
   color: var(--color-text-secondary);
 }

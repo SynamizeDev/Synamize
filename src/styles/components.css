@@ -31,7 +31,8 @@
 }
 
 .btn--gradient:hover {
-  border-color: var(--color-border-strong);
+  background: var(--gradient-btn-hover);
+  border-color: var(--btn-border-hover);
   transform: translateY(-1px);
 }
 

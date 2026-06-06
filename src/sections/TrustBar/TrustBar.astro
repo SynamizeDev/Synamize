@@ -1,9 +1,9 @@
 ---
 const stats = [
-  { value: '50M+', label: 'Brand Awareness' },
-  { value: '$2M+', label: 'Sales Generated' },
-  { value: '15X', label: 'Higher avg ROI achieved' },
-  { value: '7 Days', label: 'Of content creation' },
+  { value: '50M+', label: 'Views Generated' },
+  { value: '527+', label: 'Leads Generated' },
+  { value: '18X', label: 'Higher Engagement' },
+  { value: '7 Days', label: 'To Launch Online' },
 ];
 ---
 
@@ -36,6 +36,8 @@ const stats = [
 
     position: relative;
     z-index: var(--z-base);
+    flex-shrink: 0;
+    margin-top: auto;
     padding-block: 32px 40px;
   }
 
@@ -73,12 +75,16 @@ const stats = [
     font-weight: 700;
     line-height: 1;
     color: var(--color-text);
+    letter-spacing: 0;
   }
 
   .trust-bar__label {
+    font-family: var(--font-rokkitt);
     font-size: 16px;
-    line-height: 1;
-    color: var(--color-text-muted);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--color-text-secondary);
+    letter-spacing: 0;
   }
 
   /* Tablet (768–1023px) */
@@ -138,10 +144,11 @@ const stats = [
     }
   }
 
-  /* Desktop (1440px+) — exact Figma */
+  /* Desktop (1440px+) — Figma: stats row at bottom of 873px hero */
   @media (min-width: 1440px) {
     .trust-bar {
       padding-block: 0;
+      margin-top: var(--hero-gap-actions-trust);
     }
 
     .trust-bar__inner {
@@ -171,6 +178,7 @@ const stats = [
       font-size: var(--tb-label-size);
       line-height: var(--tb-label-lh);
       min-height: var(--tb-label-lh);
+      white-space: nowrap;
     }
   }
 </style>

@@ -1,19 +1,17 @@
 ---
-import testimonialImage from '../../assets/images/testimonials/alex-carter.jpg';
-
 const testimonial = {
   quote:
     'I joined with zero clarity on how to grow my audience. Within months, I built a strong personal brand and started getting consistent inbound clients every week.',
   name: 'Alex Carter',
   role: 'Founder of @alexbuilds',
-  image: testimonialImage.src,
-  imageAlt: 'Alex Carter, Founder of @alexbuilds',
+  image: '/images/testimonial-template.png',
+  imageAlt: 'Abstract blue ink art',
 };
 
 const metrics = [
-  { value: '18X', label: 'higher engagement' },
-  { value: '$250K', label: 'annual revenue' },
-  { value: '80K', label: 'followers gained' },
+  { value: '18X', label: 'Higher Engagement' },
+  { value: '$250K', label: 'Annual Revenue' },
+  { value: '80K', label: 'Followers Gained' },
 ];
 ---
 
@@ -21,7 +19,7 @@ const metrics = [
   <div class="testimonials__inner">
     <header class="testimonials__head">
       <div class="testimonials__head-main">
-        <p class="label">Reviews</p>
+        <p class="testimonials__label">Reviews</p>
         <h2 id="testimonials-title" class="testimonials__title">What Our Clients Say</h2>
       </div>
       <p class="testimonials__intro">
@@ -43,24 +41,26 @@ const metrics = [
               <p class="testimonials__role">{testimonial.role}</p>
             </footer>
           </div>
-
-          <ul class="testimonials__metrics" aria-label="Client results">
-            {metrics.map((metric, index) => (
-              <li class:list={['testimonials__metric', { 'testimonials__metric--last': index === metrics.length - 1 }]}>
-                <span class="testimonials__metric-value">{metric.value}</span>
-                <span class="testimonials__metric-label">{metric.label}</span>
-              </li>
-            ))}
-          </ul>
         </div>
+
+        <div class="testimonials__divider" aria-hidden="true"></div>
+
+        <ul class="testimonials__metrics" aria-label="Client results">
+          {metrics.map((metric, index) => (
+            <li class:list={['testimonials__metric', { 'testimonials__metric--last': index === metrics.length - 1 }]}>
+              <span class="testimonials__metric-value">{metric.value}</span>
+              <span class="testimonials__metric-label">{metric.label}</span>
+            </li>
+          ))}
+        </ul>
 
         <div class="testimonials__media">
           <img
             class="testimonials__image"
             src={testimonial.image}
             alt={testimonial.imageAlt}
-            width="494"
-            height="492"
+            width="466"
+            height="320"
             loading="lazy"
             decoding="async"
           />
@@ -72,11 +72,11 @@ const metrics = [
 
 <style>
   /*
-   * Reviews / Testimonials — Frame 174:24118 (cached metadata)
-   * Header 174:24146 · Panel 174:24147 (node IDs from frame child sequence)
+   * Reviews / Testimonials — Frame 174:24146 (header) · 174:24147 (panel)
    */
   .testimonials {
-    --tm-section-pad: 180px;
+    --tm-section-pad-top: 90px;
+    --tm-section-pad-bottom: 90px;
     --tm-container: 1264px;
     --tm-head-gap: 28px;
     --tm-head-main-w: 340px;
@@ -87,8 +87,8 @@ const metrics = [
     --tm-panel-radius: 16px;
     --tm-body-gap: 28px;
     --tm-content-w: 742px;
-    --tm-media-w: 494px;
-    --tm-media-h: 492px;
+    --tm-media-w: 466px;
+    --tm-media-h: 320px;
     --tm-label-size: 24px;
     --tm-title-size: 36px;
     --tm-intro-size: 20px;
@@ -101,10 +101,20 @@ const metrics = [
     --tm-metric-gap: 10px;
     --tm-metric-pad: 26px;
     --tm-quote-author-gap: 16px;
+    --tm-quote-max-w: 520px;
+    --tm-divider-w: 100%;
+    --tm-divider-gap: 12px;
+    --tm-divider-stroke: linear-gradient(
+      90deg,
+      rgb(0 112 255 / 0) 0%,
+      #0070ff 50%,
+      rgb(0 112 255 / 0) 100%
+    );
+    --tm-stats-gap: 0px;
     --tm-divider: 1px;
 
     background: transparent;
-    padding-block: 64px 80px;
+    padding-block: 32px 40px;
   }
 
   .testimonials__inner {
@@ -126,6 +136,16 @@ const metrics = [
     max-width: none;
   }
 
+  .testimonials__label {
+    margin: 0;
+    font-family: var(--font-dancing);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: normal;
+    color: var(--color-accent);
+    letter-spacing: 0;
+  }
+
   .testimonials__title {
     margin: 0;
     font-family: var(--font-display);
@@ -133,11 +153,14 @@ const metrics = [
     font-weight: 400;
     line-height: 1;
     color: var(--color-text);
+    letter-spacing: 0;
   }
 
   .testimonials__intro {
     margin: 0;
+    font-family: var(--font-rokkitt);
     font-size: 18px;
+    font-weight: 400;
     line-height: 1.2;
     color: var(--color-text);
   }
@@ -145,55 +168,76 @@ const metrics = [
   .testimonials__panel {
     padding: 20px;
     background: var(--color-surface);
+    border: 1px solid var(--color-border);
     border-radius: var(--tm-panel-radius);
     overflow: hidden;
   }
 
   .testimonials__body {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
 
   .testimonials__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: var(--tm-quote-author-gap);
     min-width: 0;
-    min-height: 100%;
   }
 
   .testimonials__quote-block {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: var(--tm-quote-author-gap);
-    padding-bottom: var(--tm-quote-author-gap);
-    border-bottom: var(--tm-divider) solid var(--color-border);
+    width: 100%;
+    padding-inline: 16px;
+  }
+
+  .testimonials__divider {
+    position: relative;
+    flex-shrink: 0;
+    width: var(--tm-divider-w);
+    height: 1px;
+    margin-block: var(--tm-divider-gap);
+    border: none;
+    background: var(--tm-divider-stroke);
+  }
+
+  .testimonials__divider::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: -12px 0;
+    background: var(--tm-divider-stroke);
+    filter: blur(12px);
+    opacity: 0.95;
+    pointer-events: none;
   }
 
   .testimonials__quote {
     margin: 0;
     padding: 0;
     border: none;
+    width: 100%;
   }
 
   .testimonials__quote p {
-    margin: 0;
-    font-family: var(--font-display);
+    margin: 0 auto;
+    max-width: var(--tm-quote-max-w);
+    font-family: var(--font-rokkitt);
     font-size: 22px;
     font-weight: 400;
     line-height: 1.2;
     color: var(--color-text);
-    text-align: left;
+    text-align: center;
   }
 
   .testimonials__author {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 4px;
     margin: 0;
+    width: 100%;
   }
 
   .testimonials__name {
@@ -207,7 +251,9 @@ const metrics = [
 
   .testimonials__role {
     margin: 0;
+    font-family: var(--font-rokkitt);
     font-size: 18px;
+    font-weight: 400;
     line-height: 1;
     color: var(--color-text-muted);
   }
@@ -219,16 +265,17 @@ const metrics = [
     list-style: none;
     margin: 0;
     padding: 0;
+    width: 100%;
   }
 
   .testimonials__metric {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     gap: var(--tm-metric-gap);
     padding: 20px 0;
-    text-align: left;
+    text-align: center;
     border-bottom: var(--tm-divider) solid var(--color-border);
   }
 
@@ -245,30 +292,36 @@ const metrics = [
   }
 
   .testimonials__metric-label {
+    font-family: var(--font-rokkitt);
     font-size: 16px;
+    font-weight: 400;
     line-height: 1;
     color: var(--color-text-muted);
   }
 
   .testimonials__media {
     min-width: 0;
-    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
   }
 
   .testimonials__image {
     display: block;
     width: 100%;
-    height: 100%;
-    min-height: 220px;
+    max-width: var(--tm-media-w);
+    height: auto;
+    aspect-ratio: 466 / 320;
     border-radius: var(--tm-panel-radius);
     object-fit: cover;
-    object-position: center bottom;
+    object-position: center center;
   }
 
   /* Tablet (768–1023px) */
   @media (min-width: 768px) {
     .testimonials {
-      padding-block: 80px 96px;
+      padding-block: 40px 48px;
     }
 
     .testimonials__inner {
@@ -296,8 +349,8 @@ const metrics = [
       padding: 22px;
     }
 
-    .testimonials__body {
-      gap: 24px;
+    .testimonials__media {
+      margin-top: 24px;
     }
 
     .testimonials__quote p {
@@ -317,6 +370,7 @@ const metrics = [
       align-items: center;
       text-align: center;
       padding: var(--tm-metric-pad);
+      padding-top: 16px;
       border-bottom: none;
       border-right: var(--tm-divider) solid var(--color-border);
     }
@@ -325,19 +379,18 @@ const metrics = [
       border-right: none;
     }
 
-    .testimonials__media {
-      min-height: 320px;
-    }
-
     .testimonials__image {
-      min-height: 320px;
+      width: var(--tm-media-w);
+      height: var(--tm-media-h);
+      max-width: 100%;
+      aspect-ratio: auto;
     }
   }
 
   /* Laptop (1024–1439px) */
   @media (min-width: 1024px) {
     .testimonials {
-      padding-block: 120px 140px;
+      padding-block: 60px 70px;
     }
 
     .testimonials__inner {
@@ -363,6 +416,7 @@ const metrics = [
       max-width: var(--tm-intro-w);
       font-size: var(--tm-intro-size);
       line-height: 1.2;
+      text-align: right;
     }
 
     .testimonials__title {
@@ -374,31 +428,65 @@ const metrics = [
     }
 
     .testimonials__body {
-      grid-template-columns: minmax(0, 1.42fr) minmax(0, 1fr);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) var(--tm-media-w);
+      grid-template-rows: 1fr auto auto;
       align-items: stretch;
-      gap: var(--tm-body-gap);
+      column-gap: var(--tm-body-gap);
+      row-gap: 0;
     }
 
-    .testimonials__metric {
-      align-items: flex-start;
-      text-align: left;
+    .testimonials__content {
+      grid-column: 1;
+      grid-row: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-self: stretch;
+      min-height: var(--tm-media-h);
+    }
+
+    .testimonials__quote-block {
+      padding-inline: 24px;
+    }
+
+    .testimonials__divider {
+      grid-column: 1;
+      grid-row: 2;
+      width: calc(100% + var(--tm-body-gap));
+      max-width: none;
+      z-index: 1;
+    }
+
+    .testimonials__metrics {
+      grid-column: 1;
+      grid-row: 3;
+      align-self: end;
     }
 
     .testimonials__media {
-      min-height: 0;
-      height: 100%;
+      grid-column: 2;
+      grid-row: 1 / -1;
+      align-self: center;
+      margin-top: 0;
+    }
+
+    .testimonials__metric {
+      align-items: center;
+      text-align: center;
     }
 
     .testimonials__image {
-      min-height: 100%;
-      height: 100%;
+      width: var(--tm-media-w);
+      height: var(--tm-media-h);
+      flex-shrink: 0;
     }
   }
 
   /* Desktop (1440px+) — exact Figma */
   @media (min-width: 1440px) {
     .testimonials {
-      padding-block: var(--tm-section-pad);
+      padding-block: var(--tm-section-pad-top) var(--tm-section-pad-bottom);
     }
 
     .testimonials__inner {
@@ -413,13 +501,16 @@ const metrics = [
       gap: var(--tm-head-stack-gap);
     }
 
+    .testimonials__label {
+      font-size: var(--tm-label-size);
+    }
+
     .testimonials__title {
       font-size: var(--tm-title-size);
     }
 
     .testimonials__body {
-      /* 742 + 28 + 494 = 1264 content row; scales inside 26px-padded panel */
-      grid-template-columns: minmax(0, 742fr) minmax(0, 494fr);
+      grid-template-columns: minmax(0, 742fr) minmax(0, 466fr);
     }
 
     .testimonials__quote p {
@@ -441,12 +532,6 @@ const metrics = [
 
     .testimonials__metric-label {
       font-size: var(--tm-metric-label-size);
-    }
-
-    .testimonials__image {
-      width: 100%;
-      min-height: var(--tm-media-h);
-      height: 100%;
     }
   }
 </style>

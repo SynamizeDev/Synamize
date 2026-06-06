@@ -10,13 +10,23 @@ import Nav from '../components/Nav.astro';
 
 import SiteMotion from '../components/islands/SiteMotion';
 
-import '@fontsource-variable/inter';
-import '@fontsource-variable/urbanist';
-import '@fontsource-variable/afacad-flux';
-import '@fontsource/rokkitt/400.css';
-import '@fontsource/rokkitt/700.css';
-import '@fontsource/dancing-script/400.css';
-import '@fontsource/dancing-script/700.css';
+import interLatin from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import urbanistLatin from '@fontsource-variable/urbanist/files/urbanist-latin-wght-normal.woff2?url';
+import loraLatin from '@fontsource/lora/files/lora-latin-400-normal.woff2?url';
+import rokkitt400 from '@fontsource/rokkitt/files/rokkitt-latin-400-normal.woff2?url';
+import rokkitt700 from '@fontsource/rokkitt/files/rokkitt-latin-700-normal.woff2?url';
+
+import '@fontsource-variable/afacad-flux/wght.css';
+import '@fontsource/dancing-script/latin-400.css';
+import '@fontsource/dancing-script/latin-700.css';
+
+const criticalFontFace = `
+@font-face{font-family:'Inter Variable';font-style:normal;font-display:block;font-weight:100 900;src:url('${interLatin}') format('woff2-variations')}
+@font-face{font-family:'Urbanist Variable';font-style:normal;font-display:block;font-weight:100 900;src:url('${urbanistLatin}') format('woff2-variations')}
+@font-face{font-family:'Lora';font-style:normal;font-display:block;font-weight:400;src:url('${loraLatin}') format('woff2')}
+@font-face{font-family:'Rokkitt';font-style:normal;font-display:block;font-weight:400;src:url('${rokkitt400}') format('woff2')}
+@font-face{font-family:'Rokkitt';font-style:normal;font-display:block;font-weight:700;src:url('${rokkitt700}') format('woff2')}
+`;
 
 import '../styles/tokens.css';
 
@@ -60,12 +70,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://synamize
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={urbanistLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={loraLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={rokkitt400} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={rokkitt700} as="font" type="font/woff2" crossorigin />
+    <style is:inline set:html={criticalFontFace} />
 
-    <!-- Grift font via Google Fonts CDN -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Grift:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <title>{title}</title>
 

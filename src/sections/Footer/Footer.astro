@@ -37,7 +37,7 @@ const connectLinks = [
             Book a free strategy call and discover how your business can attract more customers online.
           </p>
         </div>
-        <a href="mailto:hello@synamize.agency" class="btn btn--fill footer__cta-btn">
+        <a href="mailto:hello@synamize.agency" class="btn btn--gradient footer__cta-btn">
           Lets Connect
         </a>
       </div>
@@ -106,14 +106,14 @@ const connectLinks = [
 
       <div class="footer__rule" aria-hidden="true"></div>
 
-      <p class="footer__copy">&copy; Synamize | {year} All Rights Reserved</p>
+      <p class="footer__copy">&copy; Synamize&nbsp;&nbsp;|&nbsp;&nbsp;{year} All Rights Reserved</p>
     </div>
   </div>
 </footer>
 
 <style>
   .footer {
-    padding-block: var(--space-section) clamp(2.5rem, 6vw, 4rem);
+    padding-block: calc(var(--space-section) / 2) clamp(2.5rem, 6vw, 4rem);
     background: transparent;
   }
 
@@ -145,7 +145,7 @@ const connectLinks = [
     max-width: 40.8125rem;
   }
 
-  .footer__cta-title {
+  h2.footer__cta-title {
     margin: 0;
     font-family: var(--font-display);
     font-size: var(--text-section);
@@ -156,8 +156,10 @@ const connectLinks = [
 
   .footer__cta-text {
     margin: 0;
-    font-size: var(--text-body-lg);
-    line-height: var(--leading-snug);
+    font-family: var(--font-rokkitt);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.2;
     color: var(--color-text);
   }
 
@@ -194,7 +196,7 @@ const connectLinks = [
     min-width: 0;
   }
 
-  .footer__col-title {
+  p.footer__col-title {
     margin: 0 0 var(--space-label-title);
     font-family: var(--font-display);
     font-size: var(--text-footer-heading);
@@ -212,11 +214,13 @@ const connectLinks = [
     gap: 0;
   }
 
-  .footer__link {
+  a.footer__link {
     display: inline-block;
     padding-block: 0.25rem;
-    font-size: var(--text-footer-link);
-    line-height: var(--leading-footer);
+    font-family: var(--font-rokkitt);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.2;
     color: var(--color-text-muted);
     transition: color 0.35s var(--ease-luxury);
   }
@@ -227,7 +231,9 @@ const connectLinks = [
 
   .footer__copy {
     margin: 0;
-    font-size: var(--text-copyright);
+    font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
     line-height: var(--leading-tight);
     text-align: center;
     color: var(--color-text-muted);
