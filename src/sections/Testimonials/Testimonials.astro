@@ -41,18 +41,18 @@ const metrics = [
               <p class="testimonials__role">{testimonial.role}</p>
             </footer>
           </div>
+
+          <div class="testimonials__divider" aria-hidden="true"></div>
+
+          <ul class="testimonials__metrics" aria-label="Client results">
+            {metrics.map((metric, index) => (
+              <li class:list={['testimonials__metric', { 'testimonials__metric--last': index === metrics.length - 1 }]}>
+                <span class="testimonials__metric-value">{metric.value}</span>
+                <span class="testimonials__metric-label">{metric.label}</span>
+              </li>
+            ))}
+          </ul>
         </div>
-
-        <div class="testimonials__divider" aria-hidden="true"></div>
-
-        <ul class="testimonials__metrics" aria-label="Client results">
-          {metrics.map((metric, index) => (
-            <li class:list={['testimonials__metric', { 'testimonials__metric--last': index === metrics.length - 1 }]}>
-              <span class="testimonials__metric-value">{metric.value}</span>
-              <span class="testimonials__metric-label">{metric.label}</span>
-            </li>
-          ))}
-        </ul>
 
         <div class="testimonials__media">
           <img
@@ -196,21 +196,10 @@ const metrics = [
     position: relative;
     flex-shrink: 0;
     width: var(--tm-divider-w);
-    height: 1px;
-    margin-block: var(--tm-divider-gap);
+    height: 4px;
+    margin-block: 24px;
     border: none;
     background: var(--tm-divider-stroke);
-  }
-
-  .testimonials__divider::before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    inset: -12px 0;
-    background: var(--tm-divider-stroke);
-    filter: blur(12px);
-    opacity: 0.95;
-    pointer-events: none;
   }
 
   .testimonials__quote {
@@ -369,8 +358,7 @@ const metrics = [
     .testimonials__metric {
       align-items: center;
       text-align: center;
-      padding: var(--tm-metric-pad);
-      padding-top: 16px;
+      padding: 16px var(--tm-metric-pad) 0;
       border-bottom: none;
       border-right: var(--tm-divider) solid var(--color-border);
     }
@@ -430,20 +418,16 @@ const metrics = [
     .testimonials__body {
       display: grid;
       grid-template-columns: minmax(0, 1fr) var(--tm-media-w);
-      grid-template-rows: 1fr auto auto;
       align-items: stretch;
       column-gap: var(--tm-body-gap);
       row-gap: 0;
     }
 
     .testimonials__content {
-      grid-column: 1;
-      grid-row: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-self: stretch;
-      min-height: var(--tm-media-h);
+      padding-block: 0;
     }
 
     .testimonials__quote-block {
@@ -451,22 +435,15 @@ const metrics = [
     }
 
     .testimonials__divider {
-      grid-column: 1;
-      grid-row: 2;
       width: calc(100% + var(--tm-body-gap));
       max-width: none;
-      z-index: 1;
     }
 
     .testimonials__metrics {
-      grid-column: 1;
-      grid-row: 3;
-      align-self: end;
+      align-self: stretch;
     }
 
     .testimonials__media {
-      grid-column: 2;
-      grid-row: 1 / -1;
       align-self: center;
       margin-top: 0;
     }

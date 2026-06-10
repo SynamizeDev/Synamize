@@ -54,11 +54,11 @@
    * Nav + Hero desktop (1440px+) — Frame 174:24124 / 174:24129
    * Smaller breakpoints use fixed values in Nav.astro / Hero.astro
    */
-  --nav-height: 135px;
+  --nav-height: 90px;
   --nav-pad: 60px;
-  --nav-logo-width: 172.702px;
-  --nav-logo-height: 35.585px;
-  --nav-cta-width: 161px;
+  --nav-logo-width: 138px;
+  --nav-logo-height: 28px;
+  --nav-cta-width: 140px;
 
   /*
    * Hero — Frame 174:24129 (1264×300 @ y250)
@@ -148,11 +148,11 @@
   --radius-card: 16px;
 
   /* Button tokens — Frame 174:24127 / 174:24136 / 174:24138 */
-  --btn-height: 55px;
+  --btn-height: 44px;
   --btn-padding-x: 20px;
-  --btn-padding-y: 15px;
-  --btn-font-size: 20px;
-  --btn-line-height: 25px;
+  --btn-padding-y: 10px;
+  --btn-font-size: 16px;
+  --btn-line-height: 20px;
   --btn-font-weight: 700;
   --btn-border-width: 1px;
 
