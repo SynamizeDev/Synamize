@@ -1,13 +1,7 @@
 ---
-// src/pages/ssr-demo.astro
 import Layout from '../layouts/Layout.astro';
 
-// FORCE SERVER RENDERING
-export const prerender = false;
-
-// Server-side logic executes on every request
-const timestamp = new Date().toISOString();
-const userAgent = Astro.request.headers.get('user-agent') || 'Unknown';
+const buildTime = new Date().toISOString();
 ---
 
 <Layout 
@@ -19,21 +13,25 @@ const userAgent = Astro.request.headers.get('user-agent') || 'Unknown';
     <div class="max-w-2xl w-full p-8 border border-white/10 rounded-xl bg-white/5 backdrop-blur">
       <h1 class="text-3xl font-bold mb-6">Server-Side Rendering (SSR)</h1>
       <p class="text-gray-400 mb-8">
-        This page is opted-out of static generation using <code>export const prerender = false;</code>.
-        The content below is generated on the server for every request.
+        This page is statically generated at build time. Live values below are filled in the browser.
       </p>
 
       <div class="space-y-4">
         <div class="p-4 bg-black/30 rounded">
-          <div class="text-sm text-gray-500 mb-1">Server Timestamp</div>
-          <div class="font-mono text-green-400">{timestamp}</div>
+          <div class="text-sm text-gray-500 mb-1">Build Timestamp</div>
+          <div class="font-mono text-green-400">{buildTime}</div>
         </div>
 
         <div class="p-4 bg-black/30 rounded">
           <div class="text-sm text-gray-500 mb-1">Your User Agent</div>
-          <div class="font-mono text-blue-400 text-sm break-all">{userAgent}</div>
+          <div id="user-agent" class="font-mono text-blue-400 text-sm break-all">Loading…</div>
         </div>
       </div>
+
+      <script>
+        const el = document.getElementById('user-agent');
+        if (el) el.textContent = navigator.userAgent;
+      </script>
 
       <div class="mt-8 pt-6 border-t border-white/10 text-center">
         <a href="/" class="text-white underline hover:text-gray-300">Back to Home</a>
