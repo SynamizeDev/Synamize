@@ -31,19 +31,19 @@ const services = [
 
 ---
 
-<section id="services" class="services" aria-labelledby="services-title">
+<section id="services" class="services" aria-labelledby="services-title" data-scene>
   <div class="services__inner">
 
-    <header class="services__head">
+    <header class="services__head" data-scene-item>
       <p class="services__label">Services we offer</p>
       <h2 id="services-title" class="services__title">
         Systems Built To Bring More Customers To Your Business
       </h2>
     </header>
 
-    <div class="services__grid">
-      {services.map((service) => (
-        <article class:list={['services__card', { 'services__card--tall': service.tall }]}>
+    <div class="services__grid" data-scene-items>
+      {services.map((service, index) => (
+        <article class:list={['services__card', { 'services__card--tall': service.tall }]} data-scene-item>
           <div class="services__icon-glow" aria-hidden="true"></div>
           <div class="services__icon-wrap" aria-hidden="true">
             <img
@@ -94,6 +94,7 @@ const services = [
     font-family: var(--font-dancing);
     font-size: 24px;
     font-weight: 700;
+    padding-top: 30px;
     line-height: normal;
     color: var(--color-accent);
     letter-spacing: 0;

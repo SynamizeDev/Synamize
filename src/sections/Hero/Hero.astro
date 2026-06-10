@@ -15,10 +15,10 @@ import TrustBar from '../TrustBar/TrustBar.astro';
     />
   </div>
 
-  <section id="hero" class="hero" aria-labelledby="hero-title">
+  <section id="hero" class="hero" aria-labelledby="hero-title" data-scene>
     <div class="hero__inner">
       <div class="hero__content">
-        <h1 id="hero-title" class="hero__title">
+        <h1 id="hero-title" class="hero__title" data-scene-item>
           <span class="hero__title-line hero__title-line--lead">Turn Your Business</span>
           <span class="hero__title-line hero__title-line--accent">
             <span class="hero__accent-part">Into The First Choice</span>
@@ -26,12 +26,12 @@ import TrustBar from '../TrustBar/TrustBar.astro';
           </span>
         </h1>
 
-        <p class="hero__sub">
+        <p class="hero__sub" data-scene-item>
           <span class="hero__sub-line">We help local businesses get more customers through content, paid ads, websites,</span>
           <span class="hero__sub-line">and automated systems - without wasting months figuring it out alone.</span>
         </p>
 
-        <div class="hero__actions">
+        <div class="hero__actions" data-scene-item>
           <a href="#contact" class="btn btn--gradient hero__btn hero__btn--primary">Book Free Strategy Call</a>
           <a href="#testimonials" class="btn btn--gradient hero__btn hero__btn--secondary">See Client Results</a>
         </div>
@@ -59,12 +59,13 @@ import TrustBar from '../TrustBar/TrustBar.astro';
     overflow: hidden;
     min-height: 520px;
   }
-
   .hero-region__backdrop {
     position: absolute;
     inset: 0;
     pointer-events: none;
     z-index: 0;
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
   }
 
   .hero-region__photo {
@@ -138,7 +139,28 @@ import TrustBar from '../TrustBar/TrustBar.astro';
     font-style: normal;
     line-height: var(--hero-accent-lh);
     letter-spacing: 0;
-    color: var(--color-accent);
+    
+    /* Premium gradient text with slow shine */
+    background: linear-gradient(
+      to right,
+      var(--color-accent) 20%,
+      #4da3ff 40%,
+      #80c1ff 50%,
+      #4da3ff 60%,
+      var(--color-accent) 80%
+    );
+    background-size: 200% auto;
+    color: var(--color-accent); /* Fallback */
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 8s linear infinite;
+  }
+
+  @keyframes shine {
+    to {
+      background-position: 200% center;
+    }
   }
 
   .hero__accent-part {
@@ -197,6 +219,11 @@ import TrustBar from '../TrustBar/TrustBar.astro';
     background: var(--gradient-btn-hover);
     border-color: var(--btn-border-hover);
     transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(0, 123, 255, 0.25);
+  }
+
+  .hero__btn--primary {
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.15);
   }
 
   /* Small tablet — side-by-side CTAs */
@@ -237,7 +264,7 @@ import TrustBar from '../TrustBar/TrustBar.astro';
     }
 
     .hero {
-      padding-top: 180px;
+      padding-top: 150px; 
     }
 
     .hero__inner {
@@ -277,7 +304,7 @@ import TrustBar from '../TrustBar/TrustBar.astro';
     }
 
     .hero {
-      padding-top: 216px;
+      padding-top: 170px;
     }
 
     .hero__inner {

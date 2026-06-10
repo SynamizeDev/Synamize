@@ -16,6 +16,7 @@ export function initSiteMotion() {
     initSceneReveals();
     initParallax();
     initMagnetic();
+    initTeamAnimation();
   });
 
   ScrollTrigger.refresh();
@@ -46,7 +47,7 @@ function initSceneReveals() {
 
     const grid = scene.querySelector('[data-scene-items]');
     if (grid) {
-      revealOnEnter(grid.querySelectorAll('.service'), {
+      revealOnEnter(grid.querySelectorAll('[data-scene-item]'), {
         trigger: grid,
         start: 'top 88%',
         from: { opacity: 0, y: 32 },
@@ -84,6 +85,82 @@ function initMagnetic() {
     });
     el.addEventListener('mousemove', onMove as EventListener, { passive: true });
     el.addEventListener('mouseleave', () => gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: 'power2.out' }));
+  });
+}
+
+function initTeamAnimation() {
+  document.querySelectorAll<HTMLElement>('[data-team-grid]').forEach((grid) => {
+    const cards = grid.querySelectorAll('[data-team-card]');
+    if (!cards.length) return;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: grid,
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+
+    cards.forEach((card, i) => {
+      const imgWrap = card.querySelector('.team__media');
+      const img = card.querySelector('[data-team-image]');
+      const content = card.querySelectorAll('[data-team-content]');
+      const glow = card.querySelector('.team__card-glow');
+
+      // Clean, minimal initial states
+      gsap.set(card, { opacity: 0, y: 40 });
+      if (imgWrap) gsap.set(imgWrap, { clipPath: 'inset(100% 0 0 0)' });
+      if (img) gsap.set(img, { scale: 1.05 });
+      if (content.length) gsap.set(content, { opacity: 0, y: 15 });
+      if (glow) gsap.set(glow, { opacity: 0 });
+
+      const delay = i * 0.15;
+
+      // Soft card fade up
+      tl.to(card, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+      }, delay);
+
+      // Premium wipe reveal for the image container
+      if (imgWrap) {
+        tl.to(imgWrap, {
+          clipPath: 'inset(0% 0 0 0)',
+          duration: 1.2,
+          ease: 'power4.inOut',
+        }, delay + 0.1);
+      }
+
+      // Subtle image settle
+      if (img) {
+        tl.to(img, {
+          scale: 1,
+          duration: 1.5,
+          ease: 'power2.out',
+        }, delay + 0.1);
+      }
+
+      // Gentle text float
+      if (content.length) {
+        tl.to(content, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: 'power3.out',
+        }, delay + 0.6);
+      }
+
+      if (glow) {
+        tl.to(glow, {
+          opacity: 1,
+          duration: 1,
+          ease: 'power2.out',
+        }, delay + 0.8);
+      }
+    });
   });
 }
 

@@ -20,17 +20,17 @@ const members = [
 ];
 ---
 
-<section id="team" class="team section" aria-labelledby="team-heading">
+<section id="team" class="team section" aria-labelledby="team-heading" data-scene>
   <div class="container">
     <header class="team__head">
-      <div class="team__head-main">
+      <div class="team__head-main" data-scene-item>
         <p class="team__label">Meet The Team Behind Synamize</p>
         <h2 id="team-heading" class="team__title">
           <span class="team__title-line">Our focus isn't vanity metrics,</span>
           <span class="team__title-line">it's real business growth.</span>
         </h2>
       </div>
-      <div class="team__intro">
+      <div class="team__intro" data-scene-item>
         <p>
           Too many businesses struggle online despite offering great services. Synamize exists
           to help businesses attract customers through content, advertising, and digital systems.
@@ -42,9 +42,9 @@ const members = [
       </div>
     </header>
 
-    <ul class="team__grid">
+    <ul class="team__grid" data-team-grid>
       {members.map((member) => (
-        <li>
+        <li data-team-card>
           <article class="team__card">
             <div class="team__card-glow" aria-hidden="true"></div>
             <div class="team__media">
@@ -52,9 +52,10 @@ const members = [
                 <img
                   class="team__image"
                   src={member.image}
-                  alt={member.imageAlt}
+                  alt={member.name}
                   loading="lazy"
                   decoding="async"
+                  data-team-image
                 />
               ) : (
                 <div class="team__placeholder" aria-hidden="true">
@@ -63,12 +64,12 @@ const members = [
               )}
             </div>
 
-            <div class="team__meta">
+            <div class="team__meta" data-team-content>
               <h3 class="team__name">{member.name}</h3>
               <p class="team__role">{member.role}</p>
             </div>
 
-            <p class="team__bio">{member.bio}</p>
+            <p class="team__bio" data-team-content>{member.bio}</p>
           </article>
         </li>
       ))}

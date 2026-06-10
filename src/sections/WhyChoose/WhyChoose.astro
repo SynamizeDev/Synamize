@@ -23,22 +23,22 @@ const reasons = [
 ];
 ---
 
-<section id="why" class="why" aria-labelledby="why-heading">
+<section id="why" class="why" aria-labelledby="why-heading" data-scene>
   <div class="why__inner">
     <header class="why__head">
-      <div class="why__head-main">
+      <div class="why__head-main" data-scene-item>
         <p class="why__label">Why Businesses Choose Synamize</p>
         <h2 id="why-heading" class="why__title">We Build Systems That Grow Businesses</h2>
       </div>
-      <p class="why__intro">
+      <p class="why__intro" data-scene-item>
         Book a free strategy call and we'll show you exactly where your business is losing
         attention, leads and potential revenue online.
       </p>
     </header>
 
-    <ul class="why__list">
+    <ul class="why__list" data-scene-items>
       {reasons.map((reason) => (
-        <li>
+        <li data-scene-item>
           <article class="why__card">
             <img
               class="why__card-pattern"

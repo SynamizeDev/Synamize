@@ -7,11 +7,11 @@ const stats = [
 ];
 ---
 
-<section id="trust-bar" class="trust-bar" aria-label="Key results">
+<section id="trust-bar" class="trust-bar" aria-label="Key results" data-scene>
   <div class="trust-bar__inner">
-    <ul class="trust-bar__grid">
+    <ul class="trust-bar__grid" data-scene-items>
       {stats.map((stat) => (
-        <li class="trust-bar__card">
+        <li class="trust-bar__card" data-scene-item>
           <span class="trust-bar__value">{stat.value}</span>
           <span class="trust-bar__label">{stat.label}</span>
         </li>
