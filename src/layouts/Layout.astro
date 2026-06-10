@@ -10,6 +10,8 @@ import Nav from '../components/Nav.astro';
 
 import SiteMotion from '../components/islands/SiteMotion';
 
+import Calendly from '../components/Calendly.astro';
+
 import interLatin from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import urbanistLatin from '@fontsource-variable/urbanist/files/urbanist-latin-wght-normal.woff2?url';
 import loraLatin from '@fontsource/lora/files/lora-latin-400-normal.woff2?url';
@@ -97,6 +99,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://synamize
 
     <meta property="og:image" content={image} />
 
+    <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
+
   </head>
 
   <body>
@@ -112,6 +116,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://synamize
     <slot />
 
     <SmoothScroll />
+
+    <Calendly />
 
   </body>
 

@@ -1,0 +1,44 @@
+---
+import { CALENDLY_BOOKING_URL } from '../constants/calendly';
+
+const widgetJs = 'https://assets.calendly.com/assets/external/widget.js';
+---
+
+<script define:vars={{ CALENDLY_BOOKING_URL, widgetJs }}>
+  let loadPromise = null;
+
+  function loadCalendly() {
+    if (window.Calendly) return Promise.resolve();
+    if (loadPromise) return loadPromise;
+
+    loadPromise = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = widgetJs;
+      script.async = true;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error('Failed to load Calendly widget'));
+      document.head.appendChild(script);
+    });
+
+    return loadPromise;
+  }
+
+  function openCalendlyPopup(url) {
+    loadCalendly()
+      .then(() => {
+        window.Calendly?.initPopupWidget({ url });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  document.addEventListener('click', (event) => {
+    const trigger = event.target.closest('[data-calendly-popup]');
+    if (!trigger) return;
+
+    event.preventDefault();
+    const url = trigger.getAttribute('data-calendly-url') || CALENDLY_BOOKING_URL;
+    openCalendlyPopup(url);
+  });
+</script>
