@@ -20,8 +20,7 @@ const serviceLinks = [
 const connectLinks = [
   { label: 'Email', href: 'mailto:hello@synamize.agency' },
   { label: 'Instagram', href: 'https://instagram.com/' },
-  { label: 'WhatsApp', href: 'https://wa.me/' },
-  { label: 'Location', href: '#' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/' },
 ];
 ---
 
@@ -31,14 +30,14 @@ const connectLinks = [
       <div class="footer__cta">
         <div class="footer__cta-copy">
           <h2 id="footer-cta-title" class="footer__cta-title">
-            Ready To Get More Customers Online?
+            Your Next Customer Is Already Online
           </h2>
           <p class="footer__cta-text">
-            Book a free strategy call and discover how your business can attract more customers online.
+            Discover how content, advertising, and digital systems can help your business attract more customers and grow consistently.
           </p>
         </div>
         <a href="mailto:hello@synamize.agency" class="btn btn--gradient footer__cta-btn">
-          Lets Connect
+          Let's Talk Growth
         </a>
       </div>
 
@@ -69,23 +68,6 @@ const connectLinks = [
           </nav>
 
           <nav class="footer__col" aria-label="Connect">
-            <p class="footer__col-title">Connect</p>
-            <ul class="footer__links">
-              {connectLinks.map((link) => (
-                <li>
-                  <a
-                    href={link.href}
-                    class="footer__link"
-                    {...(link.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <nav class="footer__col" aria-label="Connect social">
             <p class="footer__col-title">Connect</p>
             <ul class="footer__links">
               {connectLinks.map((link) => (
@@ -187,13 +169,14 @@ const connectLinks = [
   }
 
   .footer__columns {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--gap-stat);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
 
   .footer__col {
     min-width: 0;
+    flex: 0 0 auto;
   }
 
   p.footer__col-title {
@@ -225,8 +208,9 @@ const connectLinks = [
     transition: color 0.35s var(--ease-luxury);
   }
 
-  .footer__link:hover {
-    color: var(--color-text);
+  .footer__link:hover,
+  .footer__link:focus-visible {
+    color: var(--color-accent);
   }
 
   .footer__copy {
@@ -241,7 +225,9 @@ const connectLinks = [
 
   @media (min-width: 640px) {
     .footer__columns {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      flex-flow: row wrap;
+      column-gap: clamp(3rem, 8vw, 7.5rem);
+      row-gap: 2rem;
     }
   }
 
@@ -256,10 +242,6 @@ const connectLinks = [
     .footer__cta-btn {
       align-self: flex-start;
       margin-top: 0.25rem;
-    }
-
-    .footer__columns {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
 </style>
