@@ -2,29 +2,29 @@
 
 const services = [
   {
-    title: 'Content Creation',
-    description: 'Content designed to attract attention.',
-    icon: '/images/content-creation.svg',
-  },
-  {
-    title: 'Website Design',
-    description: 'Websites built to convert visitors into leads',
+    title: 'Website Development',
+    description: 'Modern websites built to attract, engage, and convert customers.',
     icon: '/images/website-design.svg',
   },
   {
-    title: 'Paid Advertising',
-    description: 'Meta ads designed to generate leads for your business.',
-    icon: '/images/social-media.svg',
+    title: 'Meta Ads Management',
+    description: 'Facebook and Instagram advertising designed to generate leads.',
+    icon: '/images/paid-advertising.svg',
   },
   {
-    title: 'AI – Powered',
-    description: 'Automated systems that reduce manual',
+    title: 'AI & Business Automation',
+    description: 'Reduce manual work with systems that automate customer interactions.',
     icon: '/images/ai-powered.svg',
   },
   {
+    title: 'Customer Acquisition Systems',
+    description: 'Digital systems designed to bring more inquiries, appointments, and sales.',
+    icon: '/images/content-creation.svg',
+  },
+  {
     title: 'Social Media Management',
-    description: 'Content, posting, and management that keeps your business visible every day.',
-    icon: '/images/paid-advertising.svg',
+    description: 'Grow your online presence with strategic content and daily management.',
+    icon: '/images/social-media.svg',
     tall: true,
   },
 ];
@@ -212,7 +212,7 @@ const services = [
     font-family: var(--font-rokkitt);
     font-size: 1rem;
     font-weight: 400;
-    line-height: 1.45;
+    line-height: 1.2;
     color: rgba(255, 255, 255, 0.55);
   }
 
@@ -313,11 +313,11 @@ const services = [
 
     /* Tall card: icon centered top, copy bottom */
     .services__card--tall .services__copy {
-      max-width: 280px;
+      max-width: 100%;
     }
 
     .services__card--tall .services__card-title {
-      font-size: 1.25rem;
+      white-space: nowrap;
     }
   }
 
@@ -363,13 +363,9 @@ const services = [
       line-height: 1.1;
     }
 
-    .services__card--tall .services__card-title {
-      font-size: 1.25rem;
-    }
-
     .services__card-desc {
       font-size: 1.125rem;
-      line-height: 1.45;
+      line-height: 1.2;
     }
 
     .services__icon-wrap {

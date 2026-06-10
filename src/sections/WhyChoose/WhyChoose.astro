@@ -1,20 +1,24 @@
 ---
 const reasons = [
   {
+    label: 'Local Business Focused',
     title: 'Built For Local Businesses',
-    text: 'We design specifically for businesses that want more customers and stronger online presence.',
+    text: 'We understand the challenges local businesses face and build strategies designed to increase visibility, attract customers, and support long-term growth.',
   },
   {
-    title: 'Results-Focused Approach',
-    text: 'Every system we build is designed to generate leads, sales, and revenue.',
+    label: 'Results Over Vanity',
+    title: 'Focused On Real Results',
+    text: 'Every campaign, website, and system we create is designed to generate more inquiries, appointments, and customers—not just likes and impressions.',
   },
   {
-    title: 'Non-Generic Content',
-    text: 'Unique designs and copy tailored to your brand\'s specific goals.',
+    label: 'Custom Strategy',
+    title: 'Built Around Your Business',
+    text: 'No generic templates or one-size-fits-all solutions. Every strategy is tailored to your business, audience, goals, and local market.',
   },
   {
-    title: 'Long-Term Growth',
-    text: 'Systems that are built for growth and scale with your business.',
+    label: 'Complete Growth Systems',
+    title: 'More Than Just Marketing',
+    text: 'We combine content, advertising, websites, and automation into one system designed to help your business grow consistently.',
   },
 ];
 ---
@@ -57,7 +61,7 @@ const reasons = [
               aria-hidden="true"
             />
             <div class="why__card-content">
-              <p class="why__card-label">Choose Synamize</p>
+              <p class="why__card-label">{reason.label}</p>
               <div class="why__card-body">
                 <h3 class="why__card-title">{reason.title}</h3>
                 <p class="why__card-text">{reason.text}</p>
@@ -246,6 +250,7 @@ const reasons = [
     font-weight: 400;
     line-height: 1;
     color: var(--color-accent);
+    letter-spacing: 0.02em;
   }
 
   .why__card-body {
@@ -392,7 +397,6 @@ const reasons = [
 
     .why__card {
       width: var(--wc-card-w);
-      height: var(--wc-card-h);
       min-height: var(--wc-card-h);
     }
 
