@@ -18,6 +18,8 @@
     id = requestAnimationFrame(raf);
 
     document.querySelectorAll('a[href^="#"]').forEach((a) => {
+      if (a.hasAttribute('data-calendly-popup')) return;
+      
       a.addEventListener('click', (e) => {
         const href = a.getAttribute('href');
         if (!href || href === '#') return;

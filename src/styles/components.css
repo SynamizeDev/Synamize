@@ -12,9 +12,8 @@
   letter-spacing: var(--tracking-normal);
   text-transform: none;
   border-radius: var(--radius-btn);
-  transition: background 0.45s var(--ease-luxury), color 0.45s var(--ease-luxury),
-    border-color 0.45s var(--ease-luxury), transform 0.45s var(--ease-luxury);
-  will-change: transform;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow, background-color;
 }
 
 .btn--fill,
@@ -25,15 +24,20 @@
 }
 
 .btn--gradient {
-  background: var(--gradient-btn);
+  background: rgba(0, 206, 209, 0.05);
   color: var(--color-white);
-  border: var(--btn-border-width) solid var(--color-border-subtle);
+  border: 1px solid rgba(0, 206, 209, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 0 10px rgba(0, 206, 209, 0.1);
 }
 
 .btn--gradient:hover {
-  background: var(--gradient-btn-hover);
-  border-color: var(--btn-border-hover);
-  transform: translateY(-1px);
+  background: rgba(0, 206, 209, 0.25);
+  border-color: #00FFFF;
+  color: #ffffff;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0, 206, 209, 0.4), inset 0 0 15px rgba(0, 255, 255, 0.2);
 }
 
 .btn--fill:hover,
