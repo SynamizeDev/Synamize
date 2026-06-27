@@ -107,7 +107,7 @@ const reasons = [
     --wc-pattern-opacity: 1;
     --wc-glow-right: -96px;
     --wc-glow-w: 429px;
-    --wc-glow-h: 160px;
+    --wc-glow-h: 172px;
     --wc-card-stroke-w: 1px;
     /* #0070FF · 0% @ 100% → 100% @ 10% · stroke opacity 40% */
     --wc-card-stroke: linear-gradient(
@@ -230,6 +230,7 @@ const reasons = [
     object-fit: contain;
     object-position: right center;
     pointer-events: none;
+    filter: hue-rotate(-33deg) brightness(1.2) saturate(1.2);
   }
 
   .why__card-content {

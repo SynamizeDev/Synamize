@@ -1,4 +1,6 @@
 ---
+import Logo from './Logo.astro';
+
 const links = [
   { href: '#services', label: 'Services' },
   { href: '#testimonials', label: 'Results' },
@@ -9,14 +11,7 @@ const links = [
 <header class="nav" id="nav" data-nav>
   <nav class="nav__inner" aria-label="Main">
     <a href="#" class="nav__logo" aria-label="Synamize home">
-      <img
-        class="nav__logo-img"
-        src="/logo.svg"
-        alt=""
-        width="173"
-        height="36"
-        decoding="async"
-      />
+      <Logo class="nav__logo-img" />
     </a>
 
     <ul class="nav__links" hidden>
@@ -103,21 +98,21 @@ const links = [
     align-items: center;
     justify-content: space-between;
     height: 100%;
-    max-width: 100%;
+    width: min(100% - 40px, 1264px);
     margin: 0 auto;
-    padding-inline: 20px;
   }
 
   .nav__logo {
     display: block;
     flex-shrink: 0;
+    width: 140px;  
   }
 
   .nav__logo-img {
     display: block;
-    width: 120px;
+    width: 96px;
     height: auto;
-    aspect-ratio: 173 / 36;
+    aspect-ratio: 200 / 38;
   }
 
   .nav__links {
@@ -199,11 +194,11 @@ const links = [
     }
 
     .nav__inner {
-      padding-inline: 32px;
+      width: min(100% - 64px, 1264px);
     }
 
     .nav__logo-img {
-      width: 130px;
+      width: 104px;
     }
 
     .nav__drawer {
@@ -219,11 +214,11 @@ const links = [
     }
 
     .nav__inner {
-      padding-inline: 48px;
+      width: min(100% - 96px, 1264px);
     }
 
     .nav__logo-img {
-      width: 135px;
+      width: 110px;
     }
 
     .nav__cta {
@@ -250,12 +245,12 @@ const links = [
     }
 
     .nav__inner {
-      padding-inline: var(--nav-pad);
+      width: 1264px;
     }
 
     .nav__logo-img {
-      width: var(--nav-logo-width);
-      height: var(--nav-logo-height);
+      width: 110px;
+      height: auto;
     }
 
     .nav__cta {
