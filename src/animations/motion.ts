@@ -17,6 +17,7 @@ export function initSiteMotion() {
     initParallax();
     initMagnetic();
     initTeamAnimation();
+    initServicesAnimation();
   });
 
   ScrollTrigger.refresh();
@@ -161,6 +162,66 @@ function initTeamAnimation() {
         }, delay + 0.8);
       }
     });
+  });
+}
+
+function initServicesAnimation() {
+  const grid = document.querySelector<HTMLElement>('[data-services-grid]');
+  if (!grid) return;
+
+  const cards = grid.querySelectorAll<HTMLElement>('[data-scene-item]');
+  if (!cards.length) return;
+
+  cards.forEach((card) => {
+    const isTall = card.classList.contains('services__card--tall');
+    const icon = card.querySelector<HTMLElement>('.services__icon-wrap');
+    const copy = card.querySelector<HTMLElement>('.services__copy');
+
+    // Tall card: icon is CSS-centered (translateX 50%), don't touch x
+    if (icon) {
+      if (isTall) {
+        gsap.set(icon, { opacity: 0, y: -24, rotateX: 20, transformPerspective: 600 });
+      } else {
+        gsap.set(icon, { opacity: 0, x: 40, rotateY: 25, transformOrigin: 'right center', transformPerspective: 600 });
+      }
+    }
+    if (copy) {
+      gsap.set(copy, { opacity: 0, x: 20, rotateY: 10, transformOrigin: 'right center', transformPerspective: 600 });
+    }
+  });
+
+  ScrollTrigger.create({
+    trigger: grid,
+    start: 'top 85%',
+    once: true,
+    onEnter: () => {
+      cards.forEach((card, i) => {
+        const isTall = card.classList.contains('services__card--tall');
+        const icon = card.querySelector<HTMLElement>('.services__icon-wrap');
+        const copy = card.querySelector<HTMLElement>('.services__copy');
+        const delay = i * 0.1;
+
+        if (icon) {
+          gsap.to(icon, {
+            opacity: 1,
+            ...(isTall ? { y: 0, rotateX: 0 } : { x: 0, rotateY: 0 }),
+            duration: 0.8,
+            delay,
+            ease: 'power3.out',
+          });
+        }
+        if (copy) {
+          gsap.to(copy, {
+            opacity: 1,
+            x: 0,
+            rotateY: 0,
+            duration: 0.7,
+            delay: delay + 0.12,
+            ease: 'power3.out',
+          });
+        }
+      });
+    },
   });
 }
 
