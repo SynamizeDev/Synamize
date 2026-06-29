@@ -1,18 +1,12 @@
 ---
 const testimonial = {
   quote:
-    'I joined with zero clarity on how to grow my audience. Within months, I built a strong personal brand and started getting consistent inbound clients every week.',
-  name: 'Alex Carter',
-  role: 'Founder of @alexbuilds',
-  image: '/images/testimonial-template.png',
-  imageAlt: 'Abstract blue ink art',
+    'Jay is a beast! He\'s super knowledgeable about social media and how to use it to grow your business. He\'s also proactive and takes feedback well. Overall it\'s been a pleasure working with him!',
+  name: 'Brian Oliver',
+  role: 'Head of Marketing',
+  image: '/images/brian-oliver.png',
+  imageAlt: 'Brian Oliver, Head of Marketing',
 };
-
-const metrics = [
-  { value: '18X', label: 'Higher Engagement' },
-  { value: '$250K', label: 'Annual Revenue' },
-  { value: '80K', label: 'Followers Gained' },
-];
 ---
 
 <section id="testimonials" class="testimonials" aria-labelledby="testimonials-title" data-scene>
@@ -41,17 +35,6 @@ const metrics = [
               <p class="testimonials__role">{testimonial.role}</p>
             </footer>
           </div>
-
-          <div class="testimonials__divider" aria-hidden="true"></div>
-
-          <ul class="testimonials__metrics" aria-label="Client results">
-            {metrics.map((metric, index) => (
-              <li class:list={['testimonials__metric', { 'testimonials__metric--last': index === metrics.length - 1 }]}>
-                <span class="testimonials__metric-value">{metric.value}</span>
-                <span class="testimonials__metric-label">{metric.label}</span>
-              </li>
-            ))}
-          </ul>
         </div>
 
         <div class="testimonials__media">
@@ -176,7 +159,8 @@ const metrics = [
   .testimonials__body {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    align-items: center;
+    gap: 32px;
   }
 
   .testimonials__content {
@@ -290,21 +274,21 @@ const metrics = [
 
   .testimonials__media {
     min-width: 0;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
   }
 
   .testimonials__image {
     display: block;
-    width: 100%;
-    max-width: var(--tm-media-w);
-    height: auto;
-    aspect-ratio: 466 / 320;
-    border-radius: var(--tm-panel-radius);
+    width: 180px;
+    height: 180px;
+    flex-shrink: 0;
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
     object-fit: cover;
-    object-position: center center;
+    object-position: center top;
   }
 
   /* Tablet (768–1023px) */
@@ -335,7 +319,15 @@ const metrics = [
     }
 
     .testimonials__panel {
-      padding: 22px;
+      padding: 32px;
+    }
+
+    .testimonials__body {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
     }
 
     .testimonials__media {
@@ -368,10 +360,9 @@ const metrics = [
     }
 
     .testimonials__image {
-      width: var(--tm-media-w);
-      height: var(--tm-media-h);
-      max-width: 100%;
-      aspect-ratio: auto;
+      width: 200px;
+      height: 200px;
+      aspect-ratio: 1 / 1;
     }
   }
 
@@ -416,11 +407,11 @@ const metrics = [
     }
 
     .testimonials__body {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) var(--tm-media-w);
-      align-items: stretch;
-      column-gap: var(--tm-body-gap);
-      row-gap: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
     }
 
     .testimonials__content {
@@ -454,8 +445,9 @@ const metrics = [
     }
 
     .testimonials__image {
-      width: var(--tm-media-w);
-      height: var(--tm-media-h);
+      width: 260px;
+      height: 260px;
+      aspect-ratio: 1 / 1;
       flex-shrink: 0;
     }
   }
@@ -487,7 +479,7 @@ const metrics = [
     }
 
     .testimonials__body {
-      grid-template-columns: minmax(0, 742fr) minmax(0, 466fr);
+      gap: 64px;
     }
 
     .testimonials__quote p {
