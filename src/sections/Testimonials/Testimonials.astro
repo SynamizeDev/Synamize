@@ -1,12 +1,24 @@
 ---
-const testimonial = {
-  quote:
-    'Jay is a beast! He\'s super knowledgeable about social media and how to use it to grow your business. He\'s also proactive and takes feedback well. Overall it\'s been a pleasure working with him!',
-  name: 'Brian Oliver',
-  role: 'Head of Marketing',
-  image: '/images/brian-oliver.png',
-  imageAlt: 'Brian Oliver, Head of Marketing',
-};
+const testimonials = [
+  {
+    quote:
+      "Jay is a beast! He's super knowledgeable about social media and how to use it to grow your business. He's also proactive and takes feedback well. Overall it's been a pleasure working with him!",
+    name: 'Brian Oliver',
+    role: 'Head of Marketing',
+    image: '/images/brian-oliver.png',
+    imageAlt: 'Brian Oliver, Head of Marketing',
+    metrics: [],
+  },
+  {
+    quote:
+      'Working with Jay has been one of the best decisions for our page. His understanding of organic content, creative ideas, and strategy helped us cross 12+ million organic views. Highly recommend him to anyone serious about growing an audience.',
+    name: 'Antar Netra',
+    role: 'Founder · Spiritual Content Creator',
+    image: '/images/antar-netra.png',
+    imageAlt: 'Antar Netra, Spiritual Content Creator',
+    metrics: [],
+  },
+];
 ---
 
 <section id="testimonials" class="testimonials" aria-labelledby="testimonials-title" data-scene>
@@ -22,40 +34,102 @@ const testimonial = {
       </p>
     </header>
 
-    <article class="testimonials__panel" data-scene-item>
-      <div class="testimonials__body">
-        <div class="testimonials__content">
-          <div class="testimonials__quote-block">
-            <blockquote class="testimonials__quote">
-              <p>&ldquo;{testimonial.quote}&rdquo;</p>
-            </blockquote>
+    <!-- Slider wrapper -->
+    <div class="tm-slider" aria-label="Client testimonials" data-scene-item>
+      <div class="tm-slider__track" id="tm-track">
+        {testimonials.map((t, i) => (
+          <article
+            class="testimonials__panel tm-slide"
+            aria-label={`Testimonial ${i + 1} of ${testimonials.length}`}
+            aria-hidden={i !== 0 ? 'true' : 'false'}
+          >
+            <div class="testimonials__body">
+              <div class="testimonials__content">
+                <div class="testimonials__quote-block">
+                  <blockquote class="testimonials__quote">
+                    <p>&ldquo;{t.quote}&rdquo;</p>
+                  </blockquote>
 
-            <footer class="testimonials__author">
-              <cite class="testimonials__name">{testimonial.name}</cite>
-              <p class="testimonials__role">{testimonial.role}</p>
-            </footer>
-          </div>
-        </div>
+                  <footer class="testimonials__author">
+                    <cite class="testimonials__name">{t.name}</cite>
+                    <p class="testimonials__role">{t.role}</p>
+                  </footer>
 
-        <div class="testimonials__media">
-          <img
-            class="testimonials__image"
-            src={testimonial.image}
-            alt={testimonial.imageAlt}
-            width="466"
-            height="320"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
+                  {t.metrics.length > 0 && (
+                    <ul class="testimonials__metrics" aria-label="Key results">
+                      {t.metrics.map((m, mi) => (
+                        <li
+                          class={`testimonials__metric${mi === t.metrics.length - 1 ? ' testimonials__metric--last' : ''}`}
+                        >
+                          <span class="testimonials__metric-value">{m.value}</span>
+                          <span class="testimonials__metric-label">{m.label}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </div>
+
+              {t.image && (
+                <div class="testimonials__media">
+                  <img
+                    class="testimonials__image"
+                    src={t.image}
+                    alt={t.imageAlt}
+                    width="466"
+                    height="320"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              )}
+            </div>
+          </article>
+        ))}
       </div>
-    </article>
+
+      <!-- Controls -->
+      <div class="tm-slider__controls" role="group" aria-label="Slider controls">
+        <button
+          class="tm-slider__btn tm-slider__btn--prev"
+          id="tm-prev"
+          aria-label="Previous testimonial"
+          disabled
+        >
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div class="tm-slider__dots" role="tablist" aria-label="Go to slide" id="tm-dots">
+          {testimonials.map((_, i) => (
+            <button
+              class={`tm-slider__dot${i === 0 ? ' tm-slider__dot--active' : ''}`}
+              role="tab"
+              aria-selected={i === 0 ? 'true' : 'false'}
+              aria-label={`Slide ${i + 1}`}
+              data-index={i}
+            />
+          ))}
+        </div>
+
+        <button
+          class="tm-slider__btn tm-slider__btn--next"
+          id="tm-next"
+          aria-label="Next testimonial"
+        >
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
   /*
-   * Reviews / Testimonials — Frame 174:24146 (header) · 174:24147 (panel)
+   * Reviews / Testimonials — slider variant
    */
   .testimonials {
     --tm-section-pad-top: 90px;
@@ -148,11 +222,88 @@ const testimonial = {
     color: var(--color-text);
   }
 
-  .testimonials__panel {
+  /* ── Slider ── */
+  .tm-slider {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--tm-panel-radius);
+  }
+
+  .tm-slider__track {
+    display: flex;
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  .tm-slide {
+    flex: 0 0 100%;
+    min-width: 0;
+    /* panel styles */
     padding: 20px;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--tm-panel-radius);
+    box-sizing: border-box;
+  }
+
+  /* ── Controls ── */
+  .tm-slider__controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  .tm-slider__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s, opacity 0.2s;
+  }
+
+  .tm-slider__btn:hover:not(:disabled) {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #000;
+  }
+
+  .tm-slider__btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  .tm-slider__dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .tm-slider__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: var(--color-border);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.25s, transform 0.25s;
+  }
+
+  .tm-slider__dot--active {
+    background: var(--color-accent);
+    transform: scale(1.35);
+  }
+
+  /* ── Panel internals ── */
+  .testimonials__panel {
     overflow: hidden;
   }
 
@@ -165,6 +316,7 @@ const testimonial = {
 
   .testimonials__content {
     min-width: 0;
+    width: 100%;
   }
 
   .testimonials__quote-block {
@@ -261,7 +413,7 @@ const testimonial = {
     font-size: 22px;
     font-weight: 700;
     line-height: 1;
-    color: var(--color-text);
+    color: var(--color-accent);
   }
 
   .testimonials__metric-label {
@@ -318,7 +470,7 @@ const testimonial = {
       font-size: 19px;
     }
 
-    .testimonials__panel {
+    .tm-slide {
       padding: 32px;
     }
 
@@ -402,7 +554,7 @@ const testimonial = {
       font-size: 34px;
     }
 
-    .testimonials__panel {
+    .tm-slide {
       padding: var(--tm-panel-pad);
     }
 
@@ -452,7 +604,7 @@ const testimonial = {
     }
   }
 
-  /* Desktop (1440px+) — exact Figma */
+  /* Desktop (1440px+) */
   @media (min-width: 1440px) {
     .testimonials {
       padding-block: var(--tm-section-pad-top) var(--tm-section-pad-bottom);
@@ -504,3 +656,44 @@ const testimonial = {
     }
   }
 </style>
+
+<script>
+  (function () {
+    const track = document.getElementById('tm-track') as HTMLElement | null;
+    const prevBtn = document.getElementById('tm-prev') as HTMLButtonElement | null;
+    const nextBtn = document.getElementById('tm-next') as HTMLButtonElement | null;
+    const dotsContainer = document.getElementById('tm-dots');
+    const dots = dotsContainer ? Array.from(dotsContainer.querySelectorAll<HTMLButtonElement>('.tm-slider__dot')) : [];
+    const slides = track ? Array.from(track.querySelectorAll<HTMLElement>('.tm-slide')) : [];
+    const total = slides.length;
+    let current = 0;
+
+    function goTo(index: number) {
+      if (!track) return;
+      current = Math.max(0, Math.min(index, total - 1));
+      track.style.transform = `translateX(-${current * 100}%)`;
+
+      slides.forEach((s, i) => s.setAttribute('aria-hidden', i !== current ? 'true' : 'false'));
+      dots.forEach((d, i) => {
+        d.classList.toggle('tm-slider__dot--active', i === current);
+        d.setAttribute('aria-selected', String(i === current));
+      });
+
+      if (prevBtn) prevBtn.disabled = current === 0;
+      if (nextBtn) nextBtn.disabled = current === total - 1;
+    }
+
+    prevBtn?.addEventListener('click', () => goTo(current - 1));
+    nextBtn?.addEventListener('click', () => goTo(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+    // Keyboard
+    document.querySelector('.tm-slider')?.addEventListener('keydown', (e: Event) => {
+      const ke = e as KeyboardEvent;
+      if (ke.key === 'ArrowLeft') goTo(current - 1);
+      if (ke.key === 'ArrowRight') goTo(current + 1);
+    });
+
+    goTo(0);
+  })();
+</script>
